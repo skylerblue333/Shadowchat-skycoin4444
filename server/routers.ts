@@ -120,3 +120,27 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+import { phase32Router } from "./routers/phase32-v1-features";
+import { phase33Router } from "./routers/phase33-v2-features";
+import { phase34Router } from "./routers/phase34-v3-features";
+import { phase35Router } from "./routers/phase35-v4-features";
+import { phase36Router } from "./routers/phase36-v45-features";
+import { phase37Router } from "./routers/phase37-new-sections";
+import { phase38Router } from "./routers/phase38-integration";
+import { phase39Router } from "./routers/phase39-advanced";
+import { phase40Router } from "./routers/phase40-final-push";
+
+// Add to appRouter
+export const appRouter = router({
+  // ... existing routers ...
+  phase32: phase32Router,
+  phase33: phase33Router,
+  phase34: phase34Router,
+  phase35: phase35Router,
+  phase36: phase36Router,
+  phase37: phase37Router,
+  phase38: phase38Router,
+  phase39: phase39Router,
+  phase40: phase40Router,
+});
