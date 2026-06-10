@@ -37,6 +37,7 @@ import { tradingBotsRouter } from "./routers/trading-bots";
 import { walletRouter } from "./routers/wallet";
 import { gamificationRouter } from "./routers/gamification";
 import { earnLearnRouter } from "./routers/earn-learn";
+import { aiCodeEngineerRouter } from "./routers/ai-code-engineer";
 
 export const appRouter = router({
   system: systemRouter,
@@ -94,6 +95,7 @@ export const appRouter = router({
   wallet: walletRouter,
   gamification: gamificationRouter,
   earnLearn: earnLearnRouter,
+  aiCodeEngineer: aiCodeEngineerRouter,
   seed: seedRouter,
 });
 
