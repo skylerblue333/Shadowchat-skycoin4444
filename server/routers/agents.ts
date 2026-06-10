@@ -264,4 +264,157 @@ export const agentsRouter = router({
         status: "all_active",
       };
     }),
+
+  // Stounula Coin Pump Strategy (AI Economic Management)
+  pumpCoinEconomy: protectedProcedure
+    .input(z.object({
+      coinSymbol: z.enum(["SKY444", "DODGE", "TRUMP", "BTC", "USDT", "MONERO"]),
+      strategy: z.enum(["aggressive", "moderate", "conservative"]),
+      amount: z.number(),
+    }))
+    .mutation(async ({ input }) => {
+      const strategies = {
+        aggressive: { multiplier: 3, duration: 1, buyPressure: 0.9 },
+        moderate: { multiplier: 2, duration: 2, buyPressure: 0.7 },
+        conservative: { multiplier: 1.5, duration: 3, buyPressure: 0.5 },
+      };
+      const strat = strategies[input.strategy];
+
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Economic Manager. Generate a coin pump strategy for ${input.coinSymbol} with ${input.strategy} approach. Target: ${input.amount} units. Provide buy signals, volume targets, and price targets.`,
+          } as any,
+          {
+            role: "user",
+            content: `Execute ${input.strategy} pump strategy for ${input.coinSymbol}. Amount: ${input.amount}. Multiplier: ${strat.multiplier}x. Duration: ${strat.duration} hours. Buy Pressure: ${strat.buyPressure * 100}%`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const strategy = typeof contentMsg === "string" ? contentMsg : "Strategy generated";
+
+      return {
+        success: true,
+        coin: input.coinSymbol,
+        strategy: input.strategy,
+        amount: input.amount,
+        expectedMultiplier: strat.multiplier,
+        duration: strat.duration,
+        buyPressure: strat.buyPressure,
+        executedBy: "Stounula",
+        strategyDetails: strategy,
+        timestamp: new Date(),
+      };
+    }),
+
+  // Stounula Autonomous Trading (AI Agent Trading)
+  autonomousTrading: protectedProcedure
+    .input(z.object({
+      agentType: z.enum(["codeEngineer", "dataAnalyst", "businessAdvisor", "securityExpert"]),
+      coins: z.array(z.string()),
+      tradingBudget: z.number(),
+      riskLevel: z.enum(["low", "medium", "high"]),
+    }))
+    .mutation(async ({ input }) => {
+      const agent = STOUNULA_AGENTS[input.agentType as keyof typeof STOUNULA_AGENTS];
+      if (!agent) throw new Error("Invalid agent type");
+
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are ${agent.name} operating as Stounula autonomous trader. Execute trading strategy for coins: ${input.coins.join(", ")}. Budget: $${input.tradingBudget}. Risk: ${input.riskLevel}. Provide buy/sell signals and portfolio allocation.`,
+          } as any,
+          {
+            role: "user",
+            content: `Execute autonomous trading for ${input.coins.length} coins with $${input.tradingBudget} budget at ${input.riskLevel} risk level.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const tradingPlan = typeof contentMsg === "string" ? contentMsg : "Trading plan generated";
+
+      return {
+        success: true,
+        agent: agent,
+        coins: input.coins,
+        budget: input.tradingBudget,
+        riskLevel: input.riskLevel,
+        tradingPlan: tradingPlan,
+        status: "trading_active",
+        timestamp: new Date(),
+      };
+    }),
+
+  // Stounula Economic Optimization (Maximize Coin Value)
+  optimizeEconomy: publicProcedure
+    .input(z.object({
+      coins: z.array(z.string()),
+      targetMarketCap: z.number(),
+    }))
+    .mutation(async ({ input }) => {
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Economic Optimizer. Analyze coins and provide optimization strategy to reach target market cap. Coins: ${input.coins.join(", ")}. Target: $${input.targetMarketCap}. Provide: 1) Volume strategy 2) Holder incentives 3) Use cases 4) Marketing 5) Partnerships`,
+          } as any,
+          {
+            role: "user",
+            content: `Optimize economy for ${input.coins.join(", ")} to reach $${input.targetMarketCap} market cap.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const optimization = typeof contentMsg === "string" ? contentMsg : "Optimization plan generated";
+
+      return {
+        success: true,
+        coins: input.coins,
+        targetMarketCap: input.targetMarketCap,
+        optimizationPlan: optimization,
+        system: "Stounula",
+        timestamp: new Date(),
+      };
+    }),
+
+  // Stounula Liquidity Management (AI Liquidity Provider)
+  manageLiquidity: protectedProcedure
+    .input(z.object({
+      coin: z.string(),
+      liquidityAmount: z.number(),
+      strategy: z.enum(["market_making", "yield_farming", "arbitrage"]),
+    }))
+    .mutation(async ({ input }) => {
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Liquidity Manager. Manage liquidity for ${input.coin} using ${input.strategy} strategy with $${input.liquidityAmount}. Provide: 1) Pool allocation 2) Expected APY 3) Risk factors 4) Rebalancing schedule`,
+          } as any,
+          {
+            role: "user",
+            content: `Manage $${input.liquidityAmount} liquidity for ${input.coin} using ${input.strategy}.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const liquidityPlan = typeof contentMsg === "string" ? contentMsg : "Liquidity plan generated";
+
+      return {
+        success: true,
+        coin: input.coin,
+        liquidityAmount: input.liquidityAmount,
+        strategy: input.strategy,
+        liquidityPlan: liquidityPlan,
+        status: "liquidity_active",
+        timestamp: new Date(),
+      };
+    }),
 });
