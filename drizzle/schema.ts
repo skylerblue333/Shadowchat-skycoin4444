@@ -271,6 +271,14 @@ export const userFollows = mysqlTable("userFollows", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+// Per-user post likes (enables real like/unlike toggling)
+export const postLikes = mysqlTable("postLikes", {
+  id: int("id").autoincrement().primaryKey(),
+  postId: int("postId").notNull(),
+  userId: int("userId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type TradeSession = typeof tradeSessions.$inferSelect;
 export type TradingSignal = typeof tradingSignals.$inferSelect;
 export type EscrowListing = typeof escrowListings.$inferSelect;

@@ -11,6 +11,8 @@ export default function SocialMedia() {
   const { user } = useAuth();
   const [postContent, setPostContent] = useState("");
   const [activeTab, setActiveTab] = useState<"feed" | "trending" | "profile">("feed");
+  const [selectedPostForComment, setSelectedPostForComment] = useState<number | null>(null);
+  const [commentContent, setCommentContent] = useState("");
 
   const { data: feed } = trpc.social.getFeed.useQuery({ limit: 50 });
   const { data: trending } = trpc.social.getTrending.useQuery({ limit: 20 });
@@ -18,10 +20,23 @@ export default function SocialMedia() {
     { userId: user?.id || 0, limit: 50 },
     { enabled: !!user }
   );
+  const { data: userProfile } = trpc.social.getUserProfile.useQuery(
+    { userId: user?.id || 0 },
+    { enabled: !!user }
+  );
+  const { data: userStats } = trpc.social.getUserStats.useQuery(
+    { userId: user?.id || 0 },
+    { enabled: !!user }
+  );
+  const { data: postComments } = trpc.social.getComments.useQuery(
+    { postId: selectedPostForComment || 0, limit: 20 },
+    { enabled: !!selectedPostForComment }
+  );
 
   const createPostMutation = trpc.social.createPost.useMutation();
   const toggleLikeMutation = trpc.social.toggleLike.useMutation();
   const followUserMutation = trpc.social.followUser.useMutation();
+  const addCommentMutation = trpc.social.addComment.useMutation();
 
   const handleCreatePost = async () => {
     if (!postContent.trim()) return;
@@ -118,7 +133,10 @@ export default function SocialMedia() {
                     <Heart size={18} />
                     <span>{post.likes || 0}</span>
                   </button>
-                  <button className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                  <button
+                    onClick={() => setSelectedPostForComment(selectedPostForComment === post.id ? null : post.id)}
+                    className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
+                  >
                     <MessageCircle size={18} />
                     <span>{post.comments || 0}</span>
                   </button>
@@ -127,6 +145,42 @@ export default function SocialMedia() {
                     <span>Share</span>
                   </button>
                 </div>
+                
+                {/* Comments section */}
+                {selectedPostForComment === post.id && (
+                  <div className="mt-4 pt-4 border-t border-slate-700">
+                    <div className="mb-4">
+                      {postComments?.map((comment: any) => (
+                        <div key={comment.id} className="mb-2 p-2 bg-slate-700 rounded">
+                          <p className="text-sm text-slate-300"><strong>User #{comment.userId}:</strong> {comment.content}</p>
+                        </div>
+                      ))}
+                    </div>
+                    {user && (
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Add a comment..."
+                          value={commentContent}
+                          onChange={(e) => setCommentContent(e.target.value)}
+                          className="flex-1 bg-slate-700 border-slate-600 text-white placeholder-slate-400 px-2 py-1 rounded text-sm"
+                        />
+                        <Button
+                          size="sm"
+                          onClick={() => {
+                            if (commentContent.trim()) {
+                              addCommentMutation.mutate({ postId: post.id, content: commentContent });
+                              setCommentContent("");
+                            }
+                          }}
+                          className="bg-cyan-500 hover:bg-cyan-600"
+                        >
+                          Post
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </Card>
             ))}
           </div>
@@ -160,17 +214,20 @@ export default function SocialMedia() {
               <p className="text-slate-400 mb-6">{user.email}</p>
               <div className="flex gap-8 justify-center mb-6">
                 <div>
-                  <p className="text-2xl font-bold text-cyan-400">{userPosts?.length || 0}</p>
+                  <p className="text-2xl font-bold text-cyan-400">{userStats?.posts || 0}</p>
                   <p className="text-slate-400">Posts</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-blue-400">0</p>
+                  <p className="text-2xl font-bold text-blue-400">{userStats?.followers || 0}</p>
                   <p className="text-slate-400">Followers</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-purple-400">0</p>
+                  <p className="text-2xl font-bold text-purple-400">{userStats?.following || 0}</p>
                   <p className="text-slate-400">Following</p>
                 </div>
+              </div>
+              <div className="text-sm text-slate-400 mb-4">
+                <p>Total engagement: {userStats?.engagement?.toFixed(2) || 0}</p>
               </div>
             </Card>
 
@@ -180,11 +237,15 @@ export default function SocialMedia() {
                 {userPosts?.map((post: any) => (
                   <Card key={post.id} className="bg-slate-800 border-slate-700 p-6">
                     <p className="text-slate-200 mb-4">{post.content}</p>
+                    <p className="text-xs text-slate-500 mb-3">{new Date(post.createdAt).toLocaleDateString()}</p>
                     <div className="flex gap-6 text-slate-400">
-                      <span className="flex items-center gap-2">
+                      <button
+                        onClick={() => toggleLikeMutation.mutate({ postId: post.id })}
+                        className="flex items-center gap-2 hover:text-red-400 transition-colors"
+                      >
                         <Heart size={18} />
                         {post.likes || 0}
-                      </span>
+                      </button>
                       <span className="flex items-center gap-2">
                         <MessageCircle size={18} />
                         {post.comments || 0}

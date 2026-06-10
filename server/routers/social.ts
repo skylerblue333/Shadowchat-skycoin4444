@@ -1,7 +1,7 @@
 import { router, publicProcedure, protectedProcedure } from "../_core/trpc";
 import { z } from "zod";
 import { getDb } from "../db";
-import { socialPosts, socialComments, userFollows, users } from "../../drizzle/schema";
+import { socialPosts, socialComments, userFollows, postLikes, users } from "../../drizzle/schema";
 import { eq, desc, count, and } from "drizzle-orm";
 
 export const socialRouter = router({
@@ -28,17 +28,31 @@ export const socialRouter = router({
       return { success: true };
     }),
 
-  // Get feed
+  // Get feed (with user names and comment counts)
   getFeed: publicProcedure
     .input(z.object({ limit: z.number().default(20) }))
     .query(async ({ input }) => {
       const db = await getDb();
       if (!db) return [];
-      return await db
+      const posts = await db
         .select()
         .from(socialPosts)
         .orderBy(desc(socialPosts.createdAt))
         .limit(input.limit);
+      
+      // Join with user names and compute comment counts
+      const postsWithDetails = await Promise.all(
+        posts.map(async (p) => {
+          const user = await db.select().from(users).where(eq(users.id, p.userId)).then((r: any[]) => r[0]);
+          const commentCount = await db
+            .select({ count: count() })
+            .from(socialComments)
+            .where(eq(socialComments.postId, p.id))
+            .then((r: any[]) => r[0]?.count || 0);
+          return { ...p, userName: user?.name || `User #${p.userId}`, comments: commentCount };
+        })
+      );
+      return postsWithDetails;
     }),
 
   // Get user posts
@@ -55,23 +69,37 @@ export const socialRouter = router({
         .limit(input.limit);
     }),
 
-  // Like post
+  // Like post (real toggle using postLikes table)
   toggleLike: protectedProcedure
     .input(z.object({ postId: z.number() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const db = await getDb();
       if (!db) return { success: false };
-      const post = await db
+      
+      // Check if user already liked this post
+      const existingLike = await db
         .select()
-        .from(socialPosts)
-        .where(eq(socialPosts.id, input.postId))
+        .from(postLikes)
+        .where(and(eq(postLikes.postId, input.postId), eq(postLikes.userId, ctx.user!.id)))
         .then((r: any[]) => r[0]);
-      if (!post) return { success: false };
-      await db
-        .update(socialPosts)
-        .set({ likes: post.likes + 1 })
-        .where(eq(socialPosts.id, input.postId));
-      return { success: true, likes: post.likes + 1 };
+      
+      if (existingLike) {
+        // Unlike: delete the like record and decrement post likes
+        await db.delete(postLikes).where(eq(postLikes.id, existingLike.id));
+        const post = await db.select().from(socialPosts).where(eq(socialPosts.id, input.postId)).then((r: any[]) => r[0]);
+        if (post) {
+          await db.update(socialPosts).set({ likes: Math.max(0, post.likes - 1) }).where(eq(socialPosts.id, input.postId));
+        }
+        return { success: true, liked: false, likes: post?.likes - 1 || 0 };
+      } else {
+        // Like: insert like record and increment post likes
+        await db.insert(postLikes).values([{ postId: input.postId, userId: ctx.user!.id }]);
+        const post = await db.select().from(socialPosts).where(eq(socialPosts.id, input.postId)).then((r: any[]) => r[0]);
+        if (post) {
+          await db.update(socialPosts).set({ likes: post.likes + 1 }).where(eq(socialPosts.id, input.postId));
+        }
+        return { success: true, liked: true, likes: post?.likes + 1 || 1 };
+      }
     }),
 
   // Add comment
@@ -122,13 +150,15 @@ export const socialRouter = router({
       return { success: true };
     }),
 
-  // Unfollow user
+  // Unfollow user (actually deletes the follow record)
   unfollowUser: protectedProcedure
     .input(z.object({ userId: z.number() }))
     .mutation(async ({ input, ctx }) => {
       const db = await getDb();
       if (!db) throw new Error("Database not available");
-      // In production, would delete the follow record
+      await db.delete(userFollows).where(
+        and(eq(userFollows.followerId, ctx.user!.id), eq(userFollows.followingId, input.userId))
+      );
       return { success: true };
     }),
 
@@ -144,17 +174,30 @@ export const socialRouter = router({
         .where(eq(userFollows.followingId, input.userId));
     }),
 
-  // Get trending posts
+  // Get trending posts (with comment counts)
   getTrending: publicProcedure
     .input(z.object({ limit: z.number().default(10) }))
     .query(async ({ input }) => {
       const db = await getDb();
       if (!db) return [];
-      return await db
+      const posts = await db
         .select()
         .from(socialPosts)
         .orderBy(desc(socialPosts.likes))
         .limit(input.limit);
+      
+      // Compute comment counts
+      const postsWithComments = await Promise.all(
+        posts.map(async (p) => {
+          const commentCount = await db
+            .select({ count: count() })
+            .from(socialComments)
+            .where(eq(socialComments.postId, p.id))
+            .then((r: any[]) => r[0]?.count || 0);
+          return { ...p, comments: commentCount };
+        })
+      );
+      return postsWithComments;
     }),
 
   // PROFILE SECTION - Real DB queries
