@@ -1,7 +1,6 @@
 import { router, publicProcedure, protectedProcedure } from "../_core/trpc";
 import { z } from "zod";
 import { db as database } from "../db";
-const db = database;
 import { eq, desc } from "drizzle-orm";
 
 // Phase 21 — Real-Time Features & Advanced Integrations
