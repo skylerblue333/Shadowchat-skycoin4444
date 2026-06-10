@@ -417,4 +417,114 @@ export const agentsRouter = router({
         timestamp: new Date(),
       };
     }),
+
+  // Stounula Mining Operations
+  startMining: protectedProcedure
+    .input(z.object({
+      coin: z.string(),
+      hashpower: z.number(),
+      poolStrategy: z.enum(["solo", "pool", "hybrid"]),
+    }))
+    .mutation(async ({ input }) => {
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Mining Manager. Manage mining for ${input.coin} with ${input.hashpower} hashpower using ${input.poolStrategy} strategy.`,
+          } as any,
+          {
+            role: "user",
+            content: `Start mining ${input.coin} with ${input.hashpower} hashpower.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const miningPlan = typeof contentMsg === "string" ? contentMsg : "Mining plan generated";
+
+      return {
+        success: true,
+        coin: input.coin,
+        hashpower: input.hashpower,
+        poolStrategy: input.poolStrategy,
+        miningPlan: miningPlan,
+        status: "mining_active",
+        timestamp: new Date(),
+      };
+    }),
+
+  // Stounula Trading Bot
+  runTradingBot: protectedProcedure
+    .input(z.object({
+      tradingPairs: z.array(z.string()),
+      capital: z.number(),
+      botStrategy: z.enum(["scalping", "swing", "arbitrage", "grid"]),
+      riskPerTrade: z.number(),
+    }))
+    .mutation(async ({ input }) => {
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Trading Bot. Execute ${input.botStrategy} trading on pairs with $${input.capital} capital.`,
+          } as any,
+          {
+            role: "user",
+            content: `Run ${input.botStrategy} trading bot with ${input.riskPerTrade}% risk per trade.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const botPlan = typeof contentMsg === "string" ? contentMsg : "Trading bot plan generated";
+
+      return {
+        success: true,
+        tradingPairs: input.tradingPairs,
+        capital: input.capital,
+        botStrategy: input.botStrategy,
+        riskPerTrade: input.riskPerTrade,
+        botPlan: botPlan,
+        status: "trading_active",
+        timestamp: new Date(),
+      };
+    }),
+
+  // Stounula Economic Engine
+  runEconomicEngine: protectedProcedure
+    .input(z.object({
+      coins: z.array(z.string()),
+      miningBudget: z.number(),
+      tradingBudget: z.number(),
+      liquidityBudget: z.number(),
+    }))
+    .mutation(async ({ input }) => {
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are Stounula Economic Engine. Manage mining, trading, and liquidity for coins.`,
+          } as any,
+          {
+            role: "user",
+            content: `Run economic engine with mining $${input.miningBudget}, trading $${input.tradingBudget}, liquidity $${input.liquidityBudget}.`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const economicPlan = typeof contentMsg === "string" ? contentMsg : "Economic plan generated";
+
+      return {
+        success: true,
+        coins: input.coins,
+        miningBudget: input.miningBudget,
+        tradingBudget: input.tradingBudget,
+        liquidityBudget: input.liquidityBudget,
+        totalBudget: input.miningBudget + input.tradingBudget + input.liquidityBudget,
+        economicPlan: economicPlan,
+        status: "economic_engine_running",
+        timestamp: new Date(),
+      };
+    }),
 });
