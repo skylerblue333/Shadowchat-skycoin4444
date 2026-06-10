@@ -502,3 +502,64 @@ export type ReferralStats = typeof referralStats.$inferSelect;
 export type TradingBot = typeof tradingBots.$inferSelect;
 export type BotTrade = typeof botTrades.$inferSelect;
 export type BotPerformance = typeof botPerformance.$inferSelect;
+
+// Analytics & Metrics Tables
+export const userAnalytics = mysqlTable('user_analytics', {
+  id: int('id').autoincrement().primaryKey(),
+  userId: int('user_id').notNull(),
+  featureName: varchar('feature_name', { length: 255 }).notNull(),
+  actionType: varchar('action_type', { length: 50 }).notNull(),
+  duration: int('duration'),
+  timestamp: timestamp('timestamp').notNull(),
+  metadata: json('metadata'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const referralRewardsAnalytics = mysqlTable('referral_rewards_analytics', {
+  id: int('id').autoincrement().primaryKey(),
+  referrerId: int('referrer_id').notNull(),
+  referredId: int('referred_id').notNull(),
+  rewardAmount: double('reward_amount').notNull(),
+  rewardToken: varchar('reward_token', { length: 50 }).notNull(),
+  status: mysqlEnum('status', ['pending', 'claimed', 'expired']).notNull(),
+  claimedAt: timestamp('claimed_at'),
+  expiresAt: timestamp('expires_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+// tradingSignals already defined above - using existing table
+
+export const seasonalCompetitions = mysqlTable('seasonal_competitions', {
+  id: int('id').autoincrement().primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  category: varchar('category', { length: 50 }).notNull(),
+  startDate: timestamp('start_date').notNull(),
+  endDate: timestamp('end_date').notNull(),
+  prizePool: double('prize_pool').notNull(),
+  prizeToken: varchar('prize_token', { length: 50 }).notNull(),
+  status: mysqlEnum('status', ['active', 'completed']).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const competitionScores = mysqlTable('competition_scores', {
+  id: int('id').autoincrement().primaryKey(),
+  competitionId: int('competition_id').notNull(),
+  userId: int('user_id').notNull(),
+  score: double('score').notNull(),
+  rank: int('rank'),
+  prizeEarned: double('prize_earned'),
+  claimedAt: timestamp('claimed_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const pushNotificationsAnalytics = mysqlTable('push_notifications_analytics', {
+  id: int('id').autoincrement().primaryKey(),
+  userId: int('user_id').notNull(),
+  title: varchar('title', { length: 255 }).notNull(),
+  message: text('message').notNull(),
+  type: varchar('type', { length: 50 }).notNull(),
+  actionUrl: varchar('action_url', { length: 500 }),
+  isRead: boolean('is_read').default(false),
+  readAt: timestamp('read_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
