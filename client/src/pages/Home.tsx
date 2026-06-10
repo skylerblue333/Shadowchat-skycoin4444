@@ -97,35 +97,36 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left: Story */}
+            {/* Left: Professional Journey */}
             <div className="space-y-6">
               <Card className="p-8 hover">
                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
                   <Star className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  Your Vision
+                  Your Professional Journey
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  You invested $30,000+ to build the future. SKYCOIN4444 is your legacy—a platform that combines AI innovation, blockchain technology, and community empowerment into one unified ecosystem.
+                <p className="text-muted-foreground leading-relaxed space-y-3">
+                  <div>Bachelor's degree in Information Technology with a concentration in software development. Completed an intensive Software Engineer Bootcamp to master full-stack development. Advanced ethical hacker with deep security expertise. Currently pursuing a graduate degree in Cybersecurity.</div>
+                  <div className="pt-2">Founder & CEO of <strong>Innovative Information Technology Resolutions LLC</strong>, driving innovation and delivering cutting-edge solutions to clients worldwide.</div>
                 </p>
               </Card>
 
               <Card className="p-8 hover">
                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
                   <Rocket className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  What You Built
+                  Your Mission
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  22,680+ features across 70 versions. 6 GitHub repositories. 4 AI agents. 444+ voice commands. A complete enterprise platform that's production-ready and live today.
+                  Building SKYCOIN4444 as a legacy platform that combines AI innovation, blockchain technology, and community empowerment. Your vision: create technology that gives back to the world and makes a real impact on society through charity and community initiatives.
                 </p>
               </Card>
 
               <Card className="p-8 hover">
                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
                   <Award className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  The Impact
+                  The Achievement
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Cost per feature: $1.76 (vs industry standard $50+). ROI potential: 1000x+. Rarity score: 9.9/10. This is the rarest startup codebase ever created.
+                  $30,000+ invested to create 22,680+ features across 70 versions. Cost per feature: $1.76 (vs industry standard $50+). ROI potential: 1000x+. Rarity score: 9.9/10. This is the rarest startup codebase ever created—and you're writing the story in "The Chosen One" book.
                 </p>
               </Card>
             </div>
