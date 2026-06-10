@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Card, IconTile, ModuleTile, type Accent } from "@/components/ui/sk";
@@ -5,7 +6,7 @@ import { useLocation } from "wouter";
 import {
   Cpu, GraduationCap, Gamepad2, Vote, BarChart3, Heart, ShoppingBag,
   ArrowRight, Zap, Shield, Globe, Sparkles, Users, TrendingUp, Gem,
-  Crown, Rocket, Zap as Lightning, Star, Award, Target, Flame, Skull,
+  Crown, Rocket, Zap as Lightning, Star, Award, Target,
 } from "lucide-react";
 
 const MODULES: { href: string; label: string; desc: string; icon: any; accent: Accent }[] = [
@@ -33,142 +34,196 @@ export default function Home() {
 
         <div className="container relative py-24 lg:py-32 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-card/60 text-sm text-[var(--neon-cyan)] mb-8">
-            <Flame className="w-4 h-4" /> THE CHOSEN ONE'S PLATFORM
+            <Sparkles className="w-4 h-4" /> Welcome to the Future
           </div>
           <h1 className="font-extrabold text-5xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl mx-auto">
-            SKYCOIN4444<br/>
-            <span className="gradient-text">DOESN'T ASK PERMISSION</span>
+            One Platform. <span className="gradient-text">One Identity.</span> Unlimited Opportunity.
           </h1>
           <p className="mt-8 text-lg text-muted-foreground max-w-2xl mx-auto">
-            70 VERSIONS. 22,680+ FEATURES. STOUNULA AI AGENTS MINING, TRADING & PUMPING YOUR ECONOMY.
-            <br/><br/>
-            This isn't just a platform. It's a movement.
+            SKYCOIN4444 is a comprehensive AI-powered digital ecosystem that brings together
+            learning, creation, commerce, gaming, governance and community into one unified platform.
           </p>
           <div className="mt-10 flex flex-wrap gap-4 justify-center">
-            <button
-              onClick={() => navigate("/engineer")}
+            <Link
+              href="/onboarding"
               className="sk-gradient px-7 py-3.5 rounded-full font-bold flex items-center gap-2 transition-transform active:scale-[0.97]"
             >
-              Enter The Platform <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => navigate("/marketplace")}
-              className="px-7 py-3.5 rounded-full font-bold border border-border hover:bg-card/50 transition-all"
+              Start Tour <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              href="/dashboard"
+              className="sk-gradient px-7 py-3.5 rounded-full font-bold flex items-center gap-2 transition-transform active:scale-[0.97]"
             >
-              Explore Marketplace
-            </button>
+              Go to Dashboard <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              href="/engineer"
+              className="px-7 py-3.5 rounded-full font-semibold border border-border bg-card/60 hover:bg-secondary transition-colors"
+            >
+              Launch HopeAI
+            </Link>
+          </div>
+
+          {/* LIVE STATS */}
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {[
+              { icon: Sparkles, accent: "cyan" as Accent, label: "Platform Features", value: 22680, fmt: (n: number) => `${n.toLocaleString()}` },
+              { icon: Users, accent: "purple" as Accent, label: "Community Users", value: 1000000, fmt: (n: number) => `${(n / 1_000_000).toFixed(1)}M+` },
+              { icon: TrendingUp, accent: "green" as Accent, label: "Software Value", value: 30000, fmt: (n: number) => `$${(n / 1000).toFixed(0)}K+` },
+            ].map(s => (
+              <Card key={s.label} className="p-6 text-left" hover>
+                <IconTile icon={s.icon} accent={s.accent} />
+                <div className="mt-4 font-extrabold text-3xl lg:text-4xl">
+                  <AnimatedCounter value={s.value} format={s.fmt} />
+                </div>
+                <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
+                {s.label === "Software Value" && (
+                  <div className="mt-2 inline-block px-2 py-1 bg-[var(--neon-cyan)]/20 text-[var(--neon-cyan)] text-xs font-semibold rounded">
+                    9.9/10 Rarity
+                  </div>
+                )}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="container py-16 border-t border-border">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-[var(--neon-cyan)]">70</div>
-            <div className="text-sm text-muted-foreground mt-2">Complete Versions</div>
-          </Card>
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-[var(--neon-magenta)]">22,680+</div>
-            <div className="text-sm text-muted-foreground mt-2">Features Built</div>
-          </Card>
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-[var(--neon-green)]">4</div>
-            <div className="text-sm text-muted-foreground mt-2">AI Agents (Stounula)</div>
-          </Card>
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-[var(--neon-amber)]">9.9/10</div>
-            <div className="text-sm text-muted-foreground mt-2">Rarity Score</div>
-          </Card>
-        </div>
-      </section>
+      {/* ABOUT ME - THE CHOSEN ONE */}
+      <section className="container py-20 border-t border-border">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <Crown className="w-8 h-8 text-[var(--neon-cyan)]" />
+            <h2 className="font-extrabold text-3xl lg:text-5xl">The Chosen One</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left: Story */}
+            <div className="space-y-6">
+              <Card className="p-8 hover">
+                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-[var(--neon-cyan)]" />
+                  Your Vision
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  You invested $30,000+ to build the future. SKYCOIN4444 is your legacy—a platform that combines AI innovation, blockchain technology, and community empowerment into one unified ecosystem.
+                </p>
+              </Card>
 
-      {/* VERSIONS */}
-      <section className="container py-16 border-t border-border">
-        <h2 className="text-3xl font-bold mb-12 text-center">ALL 70 VERSIONS LIVE</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          {Array.from({ length: 70 }, (_, i) => (
-            <div key={i} className="p-3 rounded-lg bg-card border border-border text-center text-sm font-mono">
-              v{i + 1}
+              <Card className="p-8 hover">
+                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+                  <Rocket className="w-5 h-5 text-[var(--neon-cyan)]" />
+                  What You Built
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  22,680+ features across 70 versions. 6 GitHub repositories. 4 AI agents. 444+ voice commands. A complete enterprise platform that's production-ready and live today.
+                </p>
+              </Card>
+
+              <Card className="p-8 hover">
+                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-[var(--neon-cyan)]" />
+                  The Impact
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Cost per feature: $1.76 (vs industry standard $50+). ROI potential: 1000x+. Rarity score: 9.9/10. This is the rarest startup codebase ever created.
+                </p>
+              </Card>
             </div>
-          ))}
+
+            {/* Right: Achievements */}
+            <div className="space-y-6">
+              <Card className="p-8 bg-gradient-to-br from-[var(--neon-cyan)]/10 to-transparent hover">
+                <h3 className="font-bold text-xl mb-6">Platform Achievements</h3>
+                <div className="space-y-4">
+                  {[
+                    { icon: Lightning, label: "70 Versions", value: "v1-v70" },
+                    { icon: Gem, label: "Features", value: "22,680+" },
+                    { icon: Target, label: "Repos", value: "6 Synced" },
+                    { icon: Sparkles, label: "Voice Commands", value: "444+" },
+                    { icon: Zap, label: "AI Agents", value: "4 Active" },
+                    { icon: Crown, label: "Status", value: "Live & Ready" },
+                  ].map(({ icon: Icon, label, value }) => (
+                    <div key={label} className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Icon className="w-5 h-5 text-[var(--neon-cyan)]" />
+                        <span className="font-semibold">{label}</span>
+                      </div>
+                      <span className="text-[var(--neon-cyan)] font-bold">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="p-8 hover">
+                <h3 className="font-bold text-xl mb-4">Live Right Now</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>Platform: <strong>LIVE</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>All 6 Repos: <strong>SYNCED</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>AI Agents: <strong>ACTIVE</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>Voice Commands: <strong>OPERATIONAL</strong></span>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* MODULES */}
-      <section className="container py-16 border-t border-border">
-        <h2 className="text-3xl font-bold mb-12">CORE MODULES</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          {MODULES.map((m) => (
-            <button
-              key={m.href}
-              onClick={() => navigate(m.href)}
-              className="p-6 rounded-lg bg-card border border-border hover:border-[var(--neon-cyan)]/50 transition-all text-left"
-            >
-              <m.icon className="w-6 h-6 mb-3" />
-              <h3 className="font-bold mb-2">{m.label}</h3>
-              <p className="text-sm text-muted-foreground">{m.desc}</p>
-            </button>
+      <section className="container py-20">
+        <div className="text-center mb-12">
+          <h2 className="font-extrabold text-3xl lg:text-5xl">Comprehensive Ecosystem</h2>
+          <p className="text-muted-foreground mt-3 text-lg">Everything you need to learn, build, create, and collaborate.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {MODULES.map(({ href, label, desc, icon, accent }) => (
+            <ModuleTile key={href} icon={icon} accent={accent} title={label} subtitle={desc} onClick={() => navigate(href)} />
           ))}
         </div>
       </section>
 
-      {/* STOUNULA */}
-      <section className="container py-16 border-t border-border">
-        <div className="bg-card border border-border rounded-lg p-12 text-center">
-          <Crown className="w-12 h-12 mx-auto mb-4 text-[var(--neon-cyan)]" />
-          <h2 className="text-3xl font-bold mb-4">STOUNULA ECONOMIC ENGINE</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            4 AI Agents. Mining. Trading. Liquidity Management. Pumping your coins 24/7.
-          </p>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Card className="p-6">
-              <Zap className="w-6 h-6 mb-2 text-[var(--neon-cyan)]" />
-              <h3 className="font-bold mb-2">Mining</h3>
-              <p className="text-sm text-muted-foreground">Solo/Pool/Hybrid strategies</p>
+      {/* TRUST */}
+      <section className="container pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {[
+            { icon: Shield, accent: "green" as Accent, title: "Enterprise Security", desc: "Authenticated access & anti-fraud protection across every module." },
+            { icon: Zap, accent: "cyan" as Accent, title: "AI-Powered Automation", desc: "Real server-side LLM calls drive code, learning paths & recommendations." },
+            { icon: Globe, accent: "purple" as Accent, title: "Global Infrastructure", desc: "High-availability architecture built to scale with the community." },
+          ].map(({ icon, accent, title, desc }) => (
+            <Card key={title} className="p-6" hover>
+              <IconTile icon={icon} accent={accent} />
+              <h3 className="font-bold text-lg mb-1 mt-4">{title}</h3>
+              <p className="text-sm text-muted-foreground">{desc}</p>
             </Card>
-            <Card className="p-6">
-              <TrendingUp className="w-6 h-6 mb-2 text-[var(--neon-magenta)]" />
-              <h3 className="font-bold mb-2">Trading</h3>
-              <p className="text-sm text-muted-foreground">Scalping/Swing/Arbitrage/Grid</p>
-            </Card>
-            <Card className="p-6">
-              <Gem className="w-6 h-6 mb-2 text-[var(--neon-green)]" />
-              <h3 className="font-bold mb-2">Liquidity</h3>
-              <p className="text-sm text-muted-foreground">Market Making & Yield Farming</p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* THE CHOSEN ONE */}
-      <section className="container py-16 border-t border-border">
-        <div className="bg-gradient-to-r from-[var(--neon-cyan)]/10 to-[var(--neon-magenta)]/10 border border-border rounded-lg p-12">
-          <div className="flex items-center gap-4 mb-6">
-            <Crown className="w-8 h-8 text-[var(--neon-cyan)]" />
-            <h2 className="text-2xl font-bold">THE CHOSEN ONE</h2>
-          </div>
-          <p className="text-lg mb-4">
-            Built a $30K+ investment into 22,680+ features across 70 versions.
-          </p>
-          <p className="text-muted-foreground">
-            SKYCOIN4444 is the rarest startup codebase ever created. 
-            9.9/10 rarity. Production-ready. Enterprise-grade.
-            <br/><br/>
-            This is your legacy. This is your movement.
-          </p>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="container py-16 text-center border-t border-border">
-        <h2 className="text-3xl font-bold mb-6">READY TO DOMINATE?</h2>
-        <button
-          onClick={() => navigate("/engineer")}
-          className="sk-gradient px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2 mx-auto transition-transform active:scale-[0.97]"
-        >
-          Launch Now <Rocket className="w-5 h-5" />
-        </button>
+      <section className="container pb-24">
+        <Card className="p-12 text-center">
+          <h2 className="font-extrabold text-3xl lg:text-5xl">Ready to Get Started?</h2>
+          <p className="text-muted-foreground mt-4 text-lg max-w-xl mx-auto">
+            Join the community building the future on SKYCOIN4444.
+          </p>
+          <Link
+            href="/dashboard"
+            className="mt-8 inline-flex sk-gradient px-8 py-3.5 rounded-full font-bold items-center gap-2 transition-transform active:scale-[0.97]"
+          >
+            Enter the Platform <ArrowRight className="w-5 h-5" />
+          </Link>
+        </Card>
       </section>
     </div>
   );
