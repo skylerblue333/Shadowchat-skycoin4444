@@ -21,6 +21,7 @@ import DayTradeRoom from "./pages/DayTradeRoom";
 import EscrowShop from "./pages/EscrowShop";
 import VideoArea from "./pages/VideoArea";
 import SocialMedia from "./pages/SocialMedia";
+import SignUp from "./pages/SignUp";
 import { VoiceNavBar } from "./components/VoiceNavBar";
 
 // Fires the owner "new user signup" alert once after auth lands.
@@ -58,7 +59,8 @@ function Router() {
       <Route path="/escrow" component={EscrowShop} />
       <Route path="/videos" component={VideoArea} />
       <Route path="/social" component={SocialMedia} />
-      <Route path="/404" component={NotFound} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="*" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
