@@ -6,8 +6,6 @@ import { cn } from '@/lib/utils';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoTopGainersLosers
@@ -26,52 +24,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks
-const trpc = {
-  crypto: {
-    getTopGainersLosers: {
-      useQuery: (options?: { enabled?: boolean }) => {
-        const [data, setData] = React.useState<{ gainers: any[]; losers: any[] } | null>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        React.useEffect(() => {
-          if (options?.enabled === false) {
-            setIsLoading(false);
-            return;
-          }
-          setIsLoading(true);
-          setIsError(false);
-          const fetchData = async () => {
-            try {
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockData = {
-                gainers: [
-                  { id: '1', name: 'Bitcoin', symbol: 'BTC', price: 60000, change: 5.2, volume: '1.2B' },
-                  { id: '2', name: 'Ethereum', symbol: 'ETH', price: 3000, change: 4.8, volume: '800M' },
-                  { id: '3', name: 'Solana', symbol: 'SOL', price: 150, change: 3.5, volume: '500M' },
-                ],
-                losers: [
-                  { id: '4', name: 'Ripple', symbol: 'XRP', price: 0.5, change: -3.1, volume: '300M' },
-                  { id: '5', name: 'Cardano', symbol: 'ADA', price: 0.4, change: -2.5, volume: '200M' },
-                  { id: '6', name: 'Dogecoin', symbol: 'DOGE', price: 0.1, change: -1.8, volume: '150M' },
-                ],
-              };
-              setData(mockData);
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, [options?.enabled]);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 interface CryptoItemProps {
   name: string;

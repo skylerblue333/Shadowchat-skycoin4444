@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button'; // shadcn/ui button
-import { Input } from '@/components/ui/input';   // shadcn/ui input
-import { Label } from '@/components/ui/label';   // shadcn/ui label
-import { toast } from 'sonner'; // Assuming a toast notification system for errors
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import * as __ns_sonner_1 from 'sonner';
+const { toast } = (__ns_sonner_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoDataExportScreen
@@ -30,41 +29,6 @@ function useStubMutation<T = any>() {
 
 // Placeholder for tRPC client. In a real app, this would be configured elsewhere.
 // For this component, we'll simulate a tRPC hook.
-const trpc = {
-  crypto: {
-    exportData: {
-      useQuery: (options?: { onError?: (error: any) => void }) => {
-        // Simulate data fetching with loading and error states
-        const [data, setData] = useState<string | null>(null);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-        const [error, setError] = useState<any>(null);
-
-        useEffect(() => {
-          setIsLoading(true);
-          setIsError(false);
-          setError(null);
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) { // Simulate an error 20% of the time
-              const err = new Error('Failed to export data. Please try again.');
-              setIsError(true);
-              setError(err);
-              options?.onError?.(err);
-              toast.error(err.message);
-              setData(null);
-            } else {
-              setData('Export data successful! Download link: #');
-            }
-            setIsLoading(false);
-          }, 1500);
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface CryptoDataExportScreenProps {
   // Define any props if necessary, e.g., userId, defaultExportType

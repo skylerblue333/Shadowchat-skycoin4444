@@ -6,14 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
-import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react'; // For icons
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { AlertCircle, CheckCircle, Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: LendingPoolScreen
@@ -37,12 +36,6 @@ interface LendingPoolScreenProps {
 }
 
 // Simulate tRPC context and hooks
-const trpc = {
-  loan: {
-    getPoolInfo: () => useStubQuery({ queryKey: ['poolInfo'], queryFn: async () => { /* Simulate API call */ await new Promise(resolve => setTimeout(resolve, 500)); return { totalAssets: 1000000, availableLiquidity: 750000, interestRate: 0.05 }; } }),
-    lend: () => useStubMutation({ mutationFn: async (amount: number) => { /* Simulate API call */ await new Promise((resolve, reject) => setTimeout(() => amount > 0 ? resolve({ success: true }) : reject(new Error('Invalid amount')), 1000)); } }),
-  },
-};
 
 const LendingPoolScreen: React.FC<any> = () => {
   const { theme, setTheme } = useTheme();

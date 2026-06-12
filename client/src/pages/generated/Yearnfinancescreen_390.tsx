@@ -4,7 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { ArrowRightLeft, TrendingUp, Wallet, AlertCircle, RefreshCw, Info } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowRightLeft, TrendingUp, Wallet, AlertCircle, RefreshCw, Info } = (__ns_lucide_react_1 as any);
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -12,8 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: YearnFinanceScreen

@@ -1,8 +1,10 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import * as __ns_react_hook_form_1 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_1 as any);
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as __ns__hookform_resolvers_zod_2 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_2 as any);
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -10,8 +12,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoBlacklistScreen
@@ -30,13 +30,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks for demonstration. In a real app, these would come from trpc.ts
-const trpc = {
-  blacklist: {
-    useGetAll: () => ({ data: ['ScamCoin', 'PhishToken'], isLoading: false, isError: false }),
-    useAdd: () => ({ mutate: (item: string) => console.log("Adding:", item), isLoading: false }),
-    useRemove: () => ({ mutate: (id: string) => console.log("Removing:", id), isLoading: false }),
-  },
-};
 
 const blacklistSchema = z.object({
   item: z.string().min(1, { message: "Blacklist item cannot be empty." }),

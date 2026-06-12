@@ -4,16 +4,16 @@ import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { format, addDays, isSameDay, isBefore, startOfDay } from 'date-fns';
-import { CalendarIcon, Loader2, AlertCircle } from 'lucide-react';
+import * as __ns_date_fns_1 from 'date-fns';
+const { format, addDays, isSameDay, isBefore, startOfDay } = (__ns_date_fns_1 as any);
+import * as __ns_lucide_react_2 from 'lucide-react';
+const { CalendarIcon, Loader2, AlertCircle } = (__ns_lucide_react_2 as any);
 import { cn } from '@/lib/utils';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: MarketplaceBookingCalendar

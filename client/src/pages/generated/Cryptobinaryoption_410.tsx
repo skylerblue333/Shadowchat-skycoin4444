@@ -1,14 +1,13 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { ArrowUpCircle, ArrowDownCircle, Clock, TrendingUp, TrendingDown, AlertCircle, CheckCircle2 } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowUpCircle, ArrowDownCircle, Clock, TrendingUp, TrendingDown, AlertCircle, CheckCircle2 } = (__ns_lucide_react_1 as any);
 import { cn } from '@/lib/utils';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoBinaryOption
@@ -26,53 +25,6 @@ function useStubMutation<T = any>() {
 /* ----------------------------------------------------------------------- */
 
 
-const trpc = {
-  market: {
-    getPrice: {
-      useQuery: (asset: string) => {
-        const [data, setData] = useState({ price: 64230.50, change: 2.4 });
-        const [isLoading, setIsLoading] = useState(true);
-        const [error, setError] = useState<Error | null>(null);
-        useEffect(() => {
-          const timer = setTimeout(() => {
-            setIsLoading(false);
-          }, 1000);
-          return () => clearTimeout(timer);
-        }, []);
-        return { data, isLoading, error };
-      }
-    }
-  },
-  trade: {
-    placeOption: {
-      useMutation: () => {
-        const [isLoading, setIsLoading] = useState(false);
-        const [error, setError] = useState<Error | null>(null);
-        const [isSuccess, setIsSuccess] = useState(false);
-        const mutateAsync = async (data: any) => {
-          setIsLoading(true);
-          setError(null);
-          setIsSuccess(false);
-          
-          return new Promise((resolve, reject) => {
-            setTimeout(() => {
-              setIsLoading(false);
-              if (Math.random() > 0.1) {
-                setIsSuccess(true);
-                resolve({ success: true, tradeId: 'TRD-' + Math.floor(Math.random() * 10000) });
-              } else {
-                const err = new Error('Trade execution failed due to market volatility');
-                setError(err);
-                reject(err);
-              }
-            }, 1500);
-          });
-        };
-        return { mutateAsync, isLoading, error, isSuccess };
-      }
-    }
-  }
-};
 export default function CryptoBinaryOption() {
   const [amount, setAmount] = useState<string>('100');
   const [duration, setDuration] = useState<number>(60); 

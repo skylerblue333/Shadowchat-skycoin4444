@@ -10,8 +10,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SKYCOIN4444EnvironmentManager
@@ -44,20 +42,6 @@ interface Environment {
 }
 
 // Simulate tRPC hooks (replace with actual tRPC client in a real app)
-const trpc = {
-  environment: {
-    getEnvironments: {
-      useQuery: () => useQuery<Environment[]>({ queryKey: ['environments'], queryFn: async () => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return [
-          { id: 'env1', name: 'Development', variables: [{ id: 'var1', name: 'API_URL', value: 'dev.api.com', isSecret: false }] },
-          { id: 'env2', name: 'Production', variables: [{ id: 'var2', name: 'API_KEY', value: '********', isSecret: true }] },
-        ];
-      } })
-    }
-  }
-};
 
 const SKYCOIN4444EnvironmentManager: React.FC = () => {
   const { data: environments, isLoading, isError, error } = useStubQuery();

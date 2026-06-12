@@ -1,13 +1,12 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { User, Mail, MapPin, Calendar, Link as LinkIcon, Edit2, Shield, Activity, Settings, LogOut, CheckCircle2 } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { User, Mail, MapPin, Calendar, Link: LinkIcon, Edit2, Shield, Activity, Settings, LogOut, CheckCircle2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: UserProfile
@@ -26,33 +25,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks for standalone demonstration
-const trpc = {
-  user: {
-    getProfile: {
-      useQuery: () => ({
-        data: {
-          id: 'usr_123',
-          username: 'skywalker',
-          fullName: 'Luke Skywalker',
-          email: 'luke@skycoin.net',
-          bio: 'Crypto enthusiast, Jedi master, and early adopter of SKYCOIN. Building the decentralized future one block at a time.',
-          location: 'Tatooine',
-          joinedDate: '2023-05-04',
-          website: 'https://skycoin.net/luke',
-          verified: true,
-          stats: {
-            followers: 12400,
-            following: 42,
-            posts: 108,
-            reputation: 98
-          }
-        },
-        isLoading: false,
-        error: null
-      })
-    }
-  }
-};
 
 export default function UserProfile() {
   const { data: user, isLoading, error } = useStubQuery();

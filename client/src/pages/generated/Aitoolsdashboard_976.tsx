@@ -5,16 +5,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Skeleton } from '@/components/ui/skeleton'; // For loading states
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // For error handling
-import { Terminal } from 'lucide-react'; // Example icon for Alert
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: AiToolsDashboard
@@ -33,43 +32,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for demonstration purposes
-const useQuery = <T,>(key: string, options?: { initialData?: T }) => {
-  const [data, setData] = useState<T | undefined>(options?.initialData);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setIsError(false);
-      setError(null);
-      try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (key === 'ai.getTools') {
-          setData([
-            { id: '1', name: 'Content Generator', description: 'Generates marketing content.', status: 'active' },
-            { id: '2', name: 'Image Enhancer', description: 'Upscales and refines images.', status: 'beta' },
-            { id: '3', name: 'Sentiment Analyzer', description: 'Analyzes text sentiment.', status: 'active' },
-            { id: '4', name: 'Code Assistant', description: 'Helps write and debug code.', status: 'active' },
-            { id: '5', name: 'Data Visualizer', description: 'Creates charts from data.', status: 'beta' },
-          ] as T);
-        } else {
-          throw new Error('Unknown query key');
-        }
-      } catch (err) {
-        setIsError(true);
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [key]);
-
-  return { data, isLoading, isError, error };
-};
 
 interface AiTool {
   id: string;

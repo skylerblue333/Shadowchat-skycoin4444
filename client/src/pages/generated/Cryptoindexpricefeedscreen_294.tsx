@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui Skeleton
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui Alert
-import { Terminal } from 'lucide-react'; // shadcn/ui icon
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoIndexPriceFeedScreen
@@ -37,32 +36,6 @@ interface IndexPriceData {
 }
 
 // Mock tRPC hook for demonstration
-const trpc = {
-  crypto: {
-    getIndexPriceFeed: {
-      useQuery: (options?: any) => {
-        // Simulate API call
-        const { data, isLoading, isError, error } = useQuery<IndexPriceData>(
-          ['indexPriceFeed'],
-          async () => {
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            if (Math.random() > 0.8) {
-              throw new Error('Failed to fetch price data.');
-            }
-            return {
-              symbol: 'SKYCOIN4444/USD',
-              price: parseFloat((Math.random() * 10000).toFixed(2)),
-              timestamp: new Date().toISOString(),
-            };
-          },
-          options
-        );
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 export const CryptoIndexPriceFeedScreen: React.FC = () => {
   const { data, isLoading, isError, error } = useStubQuery();

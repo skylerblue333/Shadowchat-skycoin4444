@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ProductDetail
@@ -29,36 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration
-const trpc = {
-  product: {
-    getById: {
-      useQuery: (productId: string) => {
-        // Simulate API call
-        const { data, isLoading, isError, error } = useQuery<Product, Error>(
-          ["product", productId],
-          async () => {
-            if (productId === "error-product") {
-              throw new Error("Failed to fetch product details.");
-            }
-            await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate network delay
-            return {
-              id: productId,
-              name: "Example Product " + productId,
-              description:
-                "This is a detailed description of the example product. It highlights various features and benefits, providing comprehensive information to the user.",
-              price: 99.99,
-              imageUrl: "https://via.placeholder.com/400",
-              currency: "USD",
-              stock: 10,
-            };
-          },
-          { enabled: !!productId },
-        );
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface Product {
   id: string;

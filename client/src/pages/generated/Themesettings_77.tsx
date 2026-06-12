@@ -1,18 +1,16 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Switch } from '@/components/ui/switch'; // shadcn/ui Switch component for toggling
-import { Label } from '@/components/ui/label'; // shadcn/ui Label component for form elements
-import { Button } from '@/components/ui/button'; // shadcn/ui Button component for actions
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'; // shadcn/ui Select for dropdowns
-import { Slider } from '@/components/ui/slider'; // shadcn/ui Slider for range inputs
-import { type AppRouter } from '@/server/api/root'; // Assuming tRPC app router type for strong typing
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ThemeSettings

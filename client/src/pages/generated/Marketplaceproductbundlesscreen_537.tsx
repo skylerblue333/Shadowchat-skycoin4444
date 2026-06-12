@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card
-import { Switch } from '@/components/ui/switch'; // Assuming shadcn/ui switch for dark mode
-import { Label } from '@/components/ui/label'; // Assuming shadcn/ui label
-import { Loader2 } from 'lucide-react'; // Assuming Lucide icons for loading spinner
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: MarketplaceProductBundlesScreen
@@ -30,20 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for data fetching
-const trpc = {
-  productBundles: {
-    list: () => new Promise<ProductBundle[]>((resolve) => {
-      setTimeout(() => {
-        const mockData: ProductBundle[] = [
-          { id: '1', name: 'Starter Pack', description: 'Essential tools for beginners.', price: 49.99, products: ['Product A', 'Product B'] },
-          { id: '2', name: 'Pro Suite', description: 'Advanced features for power users.', price: 199.99, products: ['Product C', 'Product D', 'Product E'] },
-          { id: '3', name: 'Ultimate Bundle', description: 'All-inclusive package with premium support.', price: 499.99, products: ['Product F', 'Product G', 'Product H', 'Product I'] },
-        ];
-        resolve(mockData);
-      }, 1500);
-    }),
-  },
-};
 
 // Mock useTheme hook for dark mode
 const useTheme = () => {

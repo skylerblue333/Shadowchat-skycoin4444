@@ -13,8 +13,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: PriceAlerts
@@ -46,36 +44,6 @@ interface PriceAlert {
 }
 
 // Placeholder for tRPC hooks (replace with actual tRPC client usage)
-const trpc = {
-  priceAlert: {
-    getAll: () => useQuery<PriceAlert[]>(['priceAlerts'], async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      return [
-        { id: '1', cryptocurrency: 'Bitcoin', targetPrice: 70000, alertType: 'above', status: 'active', createdAt: new Date().toISOString() },
-        { id: '2', cryptocurrency: 'Ethereum', targetPrice: 3500, alertType: 'below', status: 'active', createdAt: new Date().toISOString() },
-      ];
-    }),
-    create: () => useStubMutation((newAlert: Omit<PriceAlert, 'id' | 'status' | 'createdAt'>) => {
-      // Simulate API call
-      return new Promise<PriceAlert>(resolve => setTimeout(() => {
-        resolve({ ...newAlert, id: String(Math.random()), status: 'active', createdAt: new Date().toISOString() });
-      }, 500));
-    }),
-    update: () => useStubMutation((updatedAlert: PriceAlert) => {
-      // Simulate API call
-      return new Promise<PriceAlert>(resolve => setTimeout(() => {
-        resolve(updatedAlert);
-      }, 500));
-    }),
-    delete: () => useStubMutation((id: string) => {
-      // Simulate API call
-      return new Promise<void>(resolve => setTimeout(() => {
-        resolve();
-      }, 500));
-    }),
-  },
-};
 
 const newAlertSchema = z.object({
   cryptocurrency: z.string().min(1, 'Cryptocurrency is required'),

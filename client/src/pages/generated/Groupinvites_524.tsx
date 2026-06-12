@@ -5,14 +5,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { toast } from 'sonner'; // Assuming sonner is installed for toasts
+import * as __ns_sonner_1 from 'sonner';
+const { toast } = (__ns_sonner_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: GroupInvites
@@ -54,55 +53,6 @@ const mockUsers: User[] = [
   { id: 'u2', name: 'David' },
 ];
 
-const trpc = {
-  group: {
-    getInvites: {
-      useQuery: () => useQuery<GroupInvite[]>({ queryKey: ['groupInvites'], queryFn: () => Promise.resolve(mockInvites) }),
-    },
-    acceptInvite: {
-      useMutation: () => useMutation<GroupInvite, Error, string>({
-        mutationFn: (inviteId) => {
-          const invite = mockInvites.find(i => i.id === inviteId);
-          if (invite) invite.status = 'accepted';
-          return Promise.resolve(invite as GroupInvite);
-        },
-        onSuccess: () => toast.success('Invite accepted!'),
-        onError: (error) => toast.error(`Failed to accept invite: ${error.message}`),
-      }),
-    },
-    declineInvite: {
-      useMutation: () => useMutation<GroupInvite, Error, string>({
-        mutationFn: (inviteId) => {
-          const invite = mockInvites.find(i => i.id === inviteId);
-          if (invite) invite.status = 'declined';
-          return Promise.resolve(invite as GroupInvite);
-        },
-        onSuccess: () => toast.info('Invite declined.'),
-        onError: (error) => toast.error(`Failed to decline invite: ${error.message}`),
-      }),
-    },
-    sendInvite: {
-      useMutation: () => useMutation<GroupInvite, Error, { groupId: string; userId: string }>({
-        mutationFn: ({ groupId, userId }) => {
-          const group = mockInvites.find(g => g.groupId === groupId);
-          const user = mockUsers.find(u => u.id === userId);
-          if (!group || !user) return Promise.reject(new Error('Group or user not found'));
-          const newInvite: GroupInvite = {
-            id: String(mockInvites.length + 1),
-            groupId,
-            groupName: group.groupName,
-            inviterName: 'Current User',
-            status: 'pending',
-          };
-          mockInvites.push(newInvite);
-          return Promise.resolve(newInvite);
-        },
-        onSuccess: () => toast.success('Invite sent!'),
-        onError: (error) => toast.error(`Failed to send invite: ${error.message}`),
-      }),
-    },
-  },
-};
 
 const queryClient = new QueryClient();
 

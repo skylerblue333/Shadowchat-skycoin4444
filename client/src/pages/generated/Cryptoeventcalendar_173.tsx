@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoEventCalendar
@@ -42,25 +40,6 @@ interface Event {
  * In a real application, this would be your actual tRPC client setup
  * integrated with a backend service.
  */
-const trpc = {
-  event: {
-    list: async (): Promise<Event[]> => {
-      // Simulate API call delay to show loading states.
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      // Return richer mock data for diverse event types.
-      return [
-        { id: '1', title: 'Bitcoin Halving', date: '2024-04-20', description: 'The fourth Bitcoin halving event, reducing block rewards.', category: 'Halving', link: 'https://bitcoinhalving.com' },
-        { id: '2', title: 'Ethereum DevCon', date: '2024-11-12', description: 'Annual Ethereum developer conference, focusing on ecosystem advancements.', category: 'Conference', link: 'https://devcon.org' },
-        { id: '3', title: 'Cardano Summit', date: '2024-10-01', description: 'Global Cardano community gathering, discussing project updates and future plans.', category: 'Conference', link: 'https://summit.cardano.org' },
-        { id: '4', title: 'Solana Breakpoint', date: '2024-09-25', description: 'Solana\'s annual conference for developers and community members.', category: 'Conference', link: 'https://solana.com/breakpoint' },
-        { id: '5', title: 'Polkadot Decoded', date: '2024-07-10', description: 'Polkadot\'s flagship event, exploring the latest in Web3 innovation.', category: 'Conference', link: 'https://decoded.polkadot.network' },
-        { id: '6', title: 'Chainlink SmartCon', date: '2024-09-17', description: 'Premier Web3 conference for Chainlink and oracle networks.', category: 'Conference', link: 'https://smartcon.chain.link' },
-        { id: '7', title: 'New DeFi Protocol Launch', date: '2024-08-01', description: 'Exciting new decentralized finance protocol goes live.', category: 'Launch' },
-        { id: '8', title: 'Local Crypto Meetup', date: '2024-06-20', description: 'Casual gathering for local crypto enthusiasts and traders.', category: 'Meetup' },
-      ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()); // Sort by date
-    },
-  },
-};
 
 /**
  * CryptoEventCalendar component displays a list of cryptocurrency-related events.

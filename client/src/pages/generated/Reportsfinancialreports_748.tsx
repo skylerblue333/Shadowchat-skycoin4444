@@ -4,14 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowUpDown } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowUpDown } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ReportsFinancialReports
@@ -30,25 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Placeholder for tRPC hook - replace with actual tRPC client setup
-const trpc = {
-  reports: {
-    getFinancialReports: {
-      useQuery: () => ({
-        data: [
-          { id: '1', name: 'Q1 2024 Revenue', amount: 1200000, date: '2024-03-31' },
-          { id: '2', name: 'Q2 2024 Expenses', amount: 800000, date: '2024-06-30' },
-          { id: '3', name: 'Q3 2024 Revenue', amount: 1500000, date: '2024-09-30' },
-          { id: '4', name: 'Q4 2024 Expenses', amount: 900000, date: '2024-12-31' },
-          { id: '5', name: 'Q1 2025 Revenue', amount: 1300000, date: '2025-03-31' },
-          { id: '6', name: 'Q2 2025 Expenses', amount: 850000, date: '2025-06-30' },
-        ],
-        isLoading: false,
-        isError: false,
-        error: null,
-      }),
-    },
-  },
-};
 
 interface FinancialReport {
   id: string;

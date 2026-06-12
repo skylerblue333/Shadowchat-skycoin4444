@@ -3,14 +3,13 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: HelpArticles
@@ -35,30 +34,6 @@ interface Article {
 }
 
 // Placeholder for tRPC client - in a real app, this would be configured elsewhere
-const trpc = {
-  help: {
-    getArticles: {
-      useQuery: (options?: any) => useQuery<Article[], Error>({
-        queryKey: ['helpArticles'],
-        queryFn: async () => {
-          // Simulate API call
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve([
-                { id: '1', title: 'Getting Started', content: 'This is how you get started with our service.' },
-                { id: '2', title: 'Troubleshooting Common Issues', content: 'Here are solutions to common problems.' },
-                { id: '3', title: 'Account Management', content: 'Manage your account settings and preferences.' },
-                { id: '4', title: 'Privacy Policy', content: 'Our commitment to your data privacy.' },
-                { id: '5', title: 'Terms of Service', content: 'The legal terms governing your use of our service.' },
-              ]);
-            }, 1000);
-          });
-        },
-        ...options,
-      }),
-    },
-  },
-};
 
 export const HelpArticles: React.FC = () => {
   const { data: articles, isLoading, isError, error } = useStubQuery();

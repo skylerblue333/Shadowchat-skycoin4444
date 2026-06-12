@@ -1,14 +1,12 @@
 // @ts-nocheck
 import React, { useState, useEffect, useCallback } from 'react';
-import { Switch } from '@/components/ui/switch'; // shadcn/ui switch
-import { Label } from '@/components/ui/label';   // shadcn/ui label
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: NotificationTypes
@@ -28,36 +26,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be generated.
-const trpc = {
-  notification: {
-    getNotificationTypes: {
-      useQuery: () => useQuery<NotificationType[], Error>({
-        queryKey: ['notificationTypes'],
-        queryFn: async () => {
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 500));
-          if (Math.random() < 0.1) throw new Error('Failed to fetch notification types');
-          return [
-            { id: '1', name: 'Email Notifications', enabled: true, description: 'Receive updates via email.' },
-            { id: '2', name: 'SMS Alerts', enabled: false, description: 'Get critical alerts on your phone.' },
-            { id: '3', name: 'Push Notifications', enabled: true, description: 'In-app notifications for important events.' },
-          ];
-        },
-      }),
-    },
-    updateNotificationType: {
-      useMutation: () => ({ // Mock mutation
-        mutate: async (data: { id: string; enabled: boolean }) => {
-          await new Promise(resolve => setTimeout(resolve, 300));
-          if (Math.random() < 0.2) throw new Error('Failed to update notification type');
-          console.log('Updated:', data);
-          return data;
-        },
-        isLoading: false, // Mock loading state
-      }),
-    },
-  },
-};
 
 interface NotificationType {
   id: string;

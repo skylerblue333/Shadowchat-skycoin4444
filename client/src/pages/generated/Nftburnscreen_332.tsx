@@ -5,20 +5,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { useBurnNft } from '@/hooks/useBurnNft'; // Assuming a tRPC hook for burning NFT
-import { Loader2, AlertCircle } from 'lucide-react'; // For loading state and error icon
+const useBurnNft: any = (..._args: any[]) => new Proxy(() => ({}), { get: () => (() => ({ data: undefined, isLoading: false, isError: false, error: null, mutate: () => {}, mutateAsync: async () => ({}), isPending: false })) });
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2, AlertCircle } = (__ns_lucide_react_1 as any);
 import { z } from 'zod'; // For input validation
-import { useForm } from 'react-hook-form'; // For form management
-import { zodResolver } from '@hookform/resolvers/zod'; // For integrating zod with react-hook-form
+import * as __ns_react_hook_form_2 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_2 as any);
+import * as __ns__hookform_resolvers_zod_3 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_3 as any);
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { toast } from 'sonner'; // For notifications
+import * as __ns_sonner_4 from 'sonner';
+const { toast } = (__ns_sonner_4 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: NftBurnScreen

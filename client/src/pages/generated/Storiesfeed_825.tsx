@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card component
-import { Skeleton } from '@/components/ui/skeleton'; // Assuming shadcn/ui skeleton component
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // Assuming shadcn/ui alert component
-import { Terminal } from 'lucide-react'; // Assuming lucide-react for icons
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: StoriesFeed
@@ -50,21 +49,6 @@ interface AppRouter {
 }
 
 // Placeholder for tRPC client. In a real app, this would be imported from your tRPC setup.
-const trpc = {
-  stories: {
-    getStories: {
-      useQuery: (options?: any) => {
-        // Mock data for demonstration
-        const mockData: Story[] = [
-          { id: '1', author: 'Alice', content: 'Enjoying a sunny day!', timestamp: '2 hours ago', imageUrl: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Story+1' },
-          { id: '2', author: 'Bob', content: 'New project launch!', timestamp: '4 hours ago', imageUrl: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=Story+2' },
-          { id: '3', author: 'Charlie', content: 'Weekend vibes!', timestamp: '1 day ago' },
-        ];
-        return { data: mockData, isLoading: false, isError: false, error: null };
-      },
-    },
-  },
-};
 
 const StoryCard: React.FC<any> = ({ story }) => (
   <Card className="w-full max-w-sm mx-auto bg-card text-card-foreground shadow-lg rounded-lg overflow-hidden">

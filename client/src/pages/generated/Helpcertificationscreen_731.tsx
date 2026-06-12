@@ -1,15 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, AlertCircle, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button component
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card components
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Sun, Moon, AlertCircle, Loader2 } = (__ns_lucide_react_1 as any);
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: HelpCertificationScreen
@@ -29,22 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be imported from your tRPC setup.
-const trpc = {
-  help: {
-    getCertificationStatus: async (): Promise<{ status: string; message: string }> => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const success = Math.random() > 0.2; // Simulate 80% success rate
-          if (success) {
-            resolve({ status: 'certified', message: 'Your certification is active and valid.' });
-          } else {
-            resolve({ status: 'pending', message: 'Your certification is pending review.' });
-          }
-        }, 1500);
-      });
-    },
-  },
-};
 
 interface HelpCertificationScreenProps {}
 

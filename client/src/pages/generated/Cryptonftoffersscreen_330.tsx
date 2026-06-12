@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card
-import { Button } from '@/components/ui/button'; // shadcn/ui Button
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui Skeleton
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui Alert
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoNftOffersScreen
@@ -48,38 +46,6 @@ interface AppRouter {
 }
 
 // Mock tRPC client for demonstration. Replace with actual tRPC client in a real app.
-const trpc = {
-  nft: {
-    getOffers: {
-      useQuery: () => {
-        // Simulate loading, error, and data states
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [error, setError] = React.useState<Error | null>(null);
-        const [data, setData] = React.useState<NftOffer[] | undefined>(undefined);
-
-        React.useEffect(() => {
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) { // Simulate error 20% of the time
-              setError(new Error('Failed to fetch NFT offers. Please try again.'));
-              setIsLoading(false);
-            } else {
-              setData([
-                { id: '1', title: 'Rare Digital Art #001', price: 1.5, currency: 'ETH', seller: 'CryptoArtist' },
-                { id: '2', title: 'Limited Edition Collectible', price: 0.8, currency: 'ETH', seller: 'NFTCollector' },
-                { id: '3', title: 'Gaming Skin Pack', price: 0.1, currency: 'ETH', seller: 'GameDev' },
-              ]);
-              setIsLoading(false);
-            }
-          }, 1500); // Simulate network delay
-
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { isLoading, error, data };
-      },
-    },
-  },
-};
 
 export function CryptoNftOffersScreen() {
   // In a real application, you would use: const { data, isLoading, error } = useStubQuery();

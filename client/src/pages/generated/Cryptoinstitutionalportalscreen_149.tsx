@@ -1,15 +1,13 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Placeholder for shadcn/ui
-import { Switch } from '@/components/ui/switch'; // Placeholder for shadcn/ui
-import { Label } from '@/components/ui/label'; // Placeholder for shadcn/ui
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoInstitutionalPortalScreen
@@ -35,25 +33,6 @@ interface InstitutionalPortalData {
 }
 
 // Placeholder for tRPC client setup
-const trpc = {
-  crypto: {
-    getInstitutionalData: ()=>({
-      queryKey: ['institutionalData'],
-      queryFn: async (): Promise<InstitutionalPortalData[]> => {
-        // Simulate API call
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve([
-              { id: 'btc', name: 'Bitcoin', value: 60000, change: 1.5 },
-              { id: 'eth', name: 'Ethereum', value: 3000, change: -0.8 },
-              { id: 'sol', name: 'Solana', value: 150, change: 3.2 },
-            ]);
-          }, 1000);
-        });
-      },
-    })
-  },
-};
 
 const CryptoInstitutionalPortalScreen: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);

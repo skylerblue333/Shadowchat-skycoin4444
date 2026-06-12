@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React, { useState, useCallback, ChangeEvent, FormEvent } from 'react';
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button
-import { Input } from '@/components/ui/input';   // Assuming shadcn/ui input
-import { Label } from '@/components/ui/label';   // Assuming shadcn/ui label
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card
-import { Loader2, UploadCloud, CheckCircle, XCircle } from 'lucide-react'; // Lucide icons
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2, UploadCloud, CheckCircle, XCircle } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: DocumentUploadScreen

@@ -1,17 +1,15 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button'; // shadcn/ui button
-import { Input } from '@/components/ui/input'; // shadcn/ui input
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
-import { Switch } from '@/components/ui/switch'; // shadcn/ui switch for dark mode
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: MarketplacePhysicalProducts
@@ -30,21 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be generated.
-const trpc = {
-  product: {
-    list: async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      if (Math.random() < 0.1) throw new Error('Failed to fetch products');
-      return Array.from({ length: 10 }, (_, i) => ({
-        id: `prod-${i}`,
-        name: `Product ${i + 1}`,
-        price: (i + 1) * 10.5,
-        description: `Description for product ${i + 1}`,
-      }));
-    },
-  },
-};
 
 interface Product {
   id: string;

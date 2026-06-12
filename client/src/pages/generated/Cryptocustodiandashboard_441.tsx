@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui skeleton for loading
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui alert for errors
-import { Button } from '@/components/ui/button'; // shadcn/ui button
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoCustodianDashboard
@@ -38,37 +36,6 @@ type DashboardData = {
 };
 
 // Mock tRPC context for demonstration
-const trpc = {
-  dashboard: {
-    getData: {
-      useQuery: (options?: any) => {
-        // Simulate loading, error, and data states
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [error, setError] = React.useState<Error | null>(null);
-        const [data, setData] = React.useState<DashboardData | undefined>(undefined);
-
-        React.useEffect(() => {
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) { // Simulate an error 20% of the time
-              setError(new Error('Failed to fetch dashboard data.'));
-              setIsLoading(false);
-            } else {
-              setData({
-                totalAssets: '$1,234,567.89',
-                activeAccounts: 123,
-                pendingTransactions: 5,
-              });
-              setIsLoading(false);
-            }
-          }, 1500);
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { data, isLoading, error };
-      },
-    },
-  },
-};
 
 export function CryptoCustodianDashboard() {
   const { data, isLoading, error } = useStubQuery();

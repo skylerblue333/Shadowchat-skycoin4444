@@ -10,8 +10,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: DappBrowserScreen
@@ -30,21 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client setup
-const trpc = {
-  dapp: {
-    browse: (url: string) => new Promise<string>((resolve, reject) => {
-      setTimeout(() => {
-        if (url.includes('error')) {
-          reject(new Error('Failed to load dApp.'));
-        } else if (url.includes('loading')) {
-          // Simulate long loading
-        } else {
-          resolve(`Content for ${url}`);
-        }
-      }, 1500);
-    }),
-  },
-};
 
 interface DappBrowserScreenProps {}
 

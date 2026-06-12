@@ -4,14 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import * as __ns_recharts_1 from 'recharts';
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = (__ns_recharts_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: GovernanceAnalytics
@@ -30,28 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  governance: {
-    getAnalytics: {
-      useQuery: (params: { interval: string }) => {
-        return useStubQuery({
-          queryKey: ['governanceAnalytics', params.interval],
-          queryFn: async () => {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            // Mock data based on interval
-            const data = Array.from({ length: 7 }, (_, i) => ({
-              name: `Day ${i + 1}`,
-              proposals: Math.floor(Math.random() * 100) + 50,
-              votes: Math.floor(Math.random() * 1000) + 500,
-            }));
-            return data;
-          },
-        });
-      },
-    },
-  },
-};
 
 interface AnalyticsData {
   name: string;

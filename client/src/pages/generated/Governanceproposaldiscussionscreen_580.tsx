@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, MessageCircle, ThumbsUp, ThumbsDown, Loader2 } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowLeft, MessageCircle, ThumbsUp, ThumbsDown, Loader2 } = (__ns_lucide_react_1 as any);
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -12,8 +13,6 @@ import { Switch } from '@/components/ui/switch';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: GovernanceProposalDiscussionScreen
@@ -33,39 +32,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC-like hooks for demonstration
-const trpc = {
-  proposal: {
-    getById: (id: string) => ({ queryKey: ['proposal', id], queryFn: async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      if (id === 'proposal-123') {
-        return {
-          id: 'proposal-123',
-          title: 'Implement Staking Rewards v2.0',
-          description: 'This proposal outlines the implementation of an upgraded staking rewards mechanism, focusing on improved fairness and sustainability. Key changes include dynamic reward rates based on network activity and a tiered bonus system for long-term stakers.',
-          author: 'SKYCOIN Core Team',
-          status: 'Discussion',
-          votes: { up: 1250, down: 320 },
-          comments: [
-            { id: 'comment-1', author: 'Alice', text: 'Great initiative! How will this impact smaller stakers?' },
-            { id: 'comment-2', author: 'Bob', text: 'Concerned about the complexity of dynamic rates. Needs more clarity.' },
-          ],
-        };
-      }
-      throw new Error('Proposal not found');
-    }}),
-    postComment: () => ({ mutationFn: async (comment: { proposalId: string; text: string }) => {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('Comment posted:', comment);
-      return { success: true, newComment: { id: `comment-${Date.now()}`, author: 'You', text: comment.text } };
-    }}),
-    castVote: () => ({ mutationFn: async (vote: { proposalId: string; type: 'up' | 'down' }) => {
-      await new Promise(resolve => setTimeout(resolve, 300));
-      console.log('Vote cast:', vote);
-      return { success: true };
-    }}),
-  },
-};
 
 type Proposal = {
   id: string;

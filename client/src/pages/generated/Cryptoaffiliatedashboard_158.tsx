@@ -1,15 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'; // shadcn/ui Table
-import { Separator } from '@/components/ui/separator'; // shadcn/ui Separator
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Separator } from '@/components/ui/separator';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoAffiliateDashboard
@@ -28,65 +26,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be imported from your tRPC setup.
-const trpc = {
-  affiliate: {
-    getCommissions: {
-      useQuery: () => {
-        // Simulate API call
-        const [data, setData] = React.useState<Commission[] | null>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          setTimeout(() => {
-            if (Math.random() > 0.1) { // Simulate occasional error
-              setData([
-                { id: '1', amount: 150.75, currency: 'BTC', date: '2023-01-15' },
-                { id: '2', amount: 200.00, currency: 'ETH', date: '2023-01-20' },
-                { id: '3', amount: 50.25, currency: 'USDT', date: '2023-01-22' },
-              ]);
-              setIsLoading(false);
-            } else {
-              setIsError(true);
-              setError(new Error('Failed to fetch commissions.'));
-              setIsLoading(false);
-            }
-          }, 1500);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-    getReferrals: {
-      useQuery: () => {
-        const [data, setData] = React.useState<Referral[] | null>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          setTimeout(() => {
-            if (Math.random() > 0.1) { // Simulate occasional error
-              setData([
-                { id: 'a', name: 'Alice', status: 'Active', date: '2023-01-10' },
-                { id: 'b', name: 'Bob', status: 'Pending', date: '2023-01-12' },
-                { id: 'c', name: 'Charlie', status: 'Active', date: '2023-01-18' },
-              ]);
-              setIsLoading(false);
-            } else {
-              setIsError(true);
-              setError(new Error('Failed to fetch referrals.'));
-              setIsLoading(false);
-            }
-          }, 1000);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface Commission {
   id: string;

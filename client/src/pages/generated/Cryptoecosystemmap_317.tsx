@@ -6,8 +6,6 @@ import { z } from 'zod';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoEcosystemMap
@@ -28,31 +26,6 @@ function useStubMutation<T = any>() {
 // Placeholder for tRPC client setup
 // In a real application, this would be configured in a separate file (e.g., src/utils/trpc.ts)
 // For this example, we are mocking the tRPC client and its useQuery hook.
-const trpc = {
-  crypto: {
-    getEcosystemMap: {
-      useQuery: (params: { id: string }) => {
-        const { id } = params;
-        return useQuery<string, Error>({
-          queryKey: ["ecosystemMap", id],
-          queryFn: async () => {
-            // Simulate network delay for data fetching
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            // Simulate an error condition for demonstration purposes
-            if (id === "error") {
-              throw new Error("Failed to fetch crypto ecosystem map data.");
-            }
-            // Return mock data based on the mapId
-            return `Detailed data for Crypto Ecosystem Map ID: ${id}. This would include nodes, edges, and metadata for various projects, protocols, and assets within the cryptocurrency space.`;
-          },
-          // Optional: Add retry logic or other react-query options here
-          retry: 3,
-          retryDelay: 1000,
-        });
-      },
-    },
-  },
-};
 
 // Define props interface for better type safety
 interface CryptoEcosystemMapProps {

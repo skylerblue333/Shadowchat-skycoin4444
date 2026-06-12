@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'; // shadcn/ui components
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react'; // Example loading icon
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoAttestationScreen
@@ -42,29 +41,6 @@ interface AttestationInput {
 }
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  attestation: {
-    useAttestationQuery: (id: string) => useQuery<AttestationData>({
-      queryKey: ['attestation', id],
-      queryFn: async () => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return { id, status: 'pending', message: 'Attestation in progress' };
-      },
-      enabled: !!id,
-    }),
-    useSubmitAttestationMutation: () => useMutation<AttestationData, Error, AttestationInput>({
-      mutationFn: async (data: AttestationInput) => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        if (data.cryptoAddress === 'invalid') {
-          throw new Error('Invalid crypto address provided.');
-        }
-        return { id: 'attest_123', status: 'attested', message: 'Attestation successful' };
-      },
-    }),
-  },
-};
 
 interface CryptoAttestationScreenProps {
   userId: string;

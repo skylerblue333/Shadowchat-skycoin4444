@@ -2,14 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button'; // Assuming a button component is available
+import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: UsdcDashboard
@@ -28,25 +26,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be imported from your tRPC setup.
-const trpc = {
-  usdc: {
-    getDashboardData: {
-      useQuery: () => {
-        const { data, isLoading, isError, error } = useStubQuery({
-          queryKey: ['usdcDashboardData'],
-          queryFn: async () => {
-            return new Promise(resolve => setTimeout(() => resolve({
-              totalUsdc: '1,234,567.89',
-              dailyVolume: '123,456.78',
-              transactions: 54321,
-            }), 1000));
-          },
-        });
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface UsdcDashboardProps {
   // Define any props for the component here

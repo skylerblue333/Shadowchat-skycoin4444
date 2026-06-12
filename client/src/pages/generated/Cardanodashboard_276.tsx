@@ -3,14 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { DollarSign, ArrowUpRight, ArrowDownRight, RefreshCcw } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { DollarSign, ArrowUpRight, ArrowDownRight, RefreshCcw } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CardanoDashboard
@@ -30,28 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  cardano: {
-    getDashboardData: {
-      useQuery: (options?: any) => {
-        const fetchData = async () => {
-          return new Promise(resolve => {
-            setTimeout(() => {
-              resolve({
-                adaPrice: (Math.random() * 0.5 + 0.2).toFixed(4), // $0.2000 - $0.7000
-                priceChange24h: (Math.random() * 0.2 - 0.1).toFixed(2), // -10% to +10%
-                marketCap: (Math.random() * 20 + 10).toFixed(2), // $10B - $30B
-                totalStaked: (Math.random() * 70 + 20).toFixed(2), // 20B - 90B ADA
-                transactions24h: Math.floor(Math.random() * 1000000 + 500000).toLocaleString(),
-              });
-            }, 1000);
-          });
-        };
-        return useStubQuery({ queryKey: ['cardanoDashboard'], queryFn: fetchData, ...options });
-      },
-    },
-  },
-};
 
 interface CardanoDashboardProps {
   initialTheme?: 'light' | 'dark';

@@ -9,8 +9,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoCliffCalculator
@@ -33,46 +31,6 @@ interface CryptoCliffCalculatorProps {
 }
 
 // Simulate tRPC context and hooks
-const trpc = {
-  crypto: {
-    getCliffData: {
-      useQuery: (params: { initialInvestment: number; cliffDuration: number; vestingDuration: number; tokenPrice: number }) => {
-        const [data, setData] = useState<{ vestedTokens: number; currentValue: number } | null>(null);
-        const [isLoading, setIsLoading] = useState<boolean>(false);
-        const [error, setError] = useState<string | null>(null);
-
-        useEffect(() => {
-          const calculate = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-              await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API delay
-
-              if (params.initialInvestment <= 0 || params.tokenPrice <= 0 || params.vestingDuration <= 0) {
-                throw new Error('Invalid input for calculation.');
-              }
-
-              const totalTokens = params.initialInvestment / params.tokenPrice;
-              const monthlyVesting = totalTokens / params.vestingDuration;
-              const calculatedVestedTokens = monthlyVesting * (params.vestingDuration - params.cliffDuration);
-              const calculatedCurrentValue = calculatedVestedTokens * params.tokenPrice;
-
-              setData({ vestedTokens: calculatedVestedTokens, currentValue: calculatedCurrentValue });
-            } catch (err: any) {
-              setError(err.message || 'An unknown error occurred during calculation.');
-            } finally {
-              setIsLoading(false);
-            }
-          };
-
-          calculate();
-        }, [params.initialInvestment, params.cliffDuration, params.vestingDuration, params.tokenPrice]);
-
-        return { data, isLoading, error };
-      },
-    },
-  },
-};
 
 const CryptoCliffCalculator: React.FC<any> = () => {
   const [initialInvestment, setInitialInvestment] = useState<number>(10000);

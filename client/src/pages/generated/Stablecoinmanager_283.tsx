@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { ArrowUpDown, MoreHorizontal, PlusCircle, Loader2 } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowUpDown, MoreHorizontal, PlusCircle, Loader2 } = (__ns_lucide_react_1 as any);
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -12,8 +13,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: StablecoinManager
@@ -34,40 +33,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC-like hooks for demonstration
-const trpc = {
-  stablecoin: {
-    list: {
-      useQuery: () => useQuery<Stablecoin[]>({ queryKey: ['stablecoins'], queryFn: async () => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (Math.random() < 0.1) throw new Error('Failed to fetch stablecoins'); // Simulate error
-        return [
-          { id: '1', name: 'USDC', balance: 1500.75, status: 'active' },
-          { id: '2', name: 'USDT', balance: 2300.00, status: 'active' },
-          { id: '3', name: 'DAI', balance: 800.50, status: 'inactive' },
-        ];
-      }}),
-    },
-    deposit: {
-      useMutation: () => useMutation<void, Error, { id: string; amount: number }>({ mutationFn: async ({ id, amount }) => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 500));
-        if (Math.random() < 0.2) throw new Error('Deposit failed'); // Simulate error
-        console.log(`Depositing ${amount} to ${id}`);
-        toast({ title: 'Deposit Successful', description: `Deposited ${amount} to ${id}` });
-      }}),
-    },
-    withdraw: {
-      useMutation: () => useMutation<void, Error, { id: string; amount: number }>({ mutationFn: async ({ id, amount }) => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 500));
-        if (Math.random() < 0.2) throw new Error('Withdrawal failed'); // Simulate error
-        console.log(`Withdrawing ${amount} from ${id}`);
-        toast({ title: 'Withdrawal Successful', description: `Withdrew ${amount} from ${id}` });
-      }}),
-    },
-  },
-};
 
 interface Stablecoin {
   id: string;

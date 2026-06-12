@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as __ns_react_hook_form_1 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_1 as any);
+import * as __ns__hookform_resolvers_zod_2 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_2 as any);
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,8 +17,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: FiatOffRamp
@@ -46,26 +46,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 // Mock tRPC hook for demonstration
-const trpc = {
-  fiatOffRamp: {
-    createTransaction: {
-      useMutation: () => useMutation<any, Error, FormData>({
-        mutationFn: async (data) => {
-          // Simulate API call
-          return new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (data.amount > 1000) {
-                reject(new Error('Transaction limit exceeded.'));
-              } else {
-                resolve({ success: true, transactionId: 'txn_12345' });
-              }
-            }, 1500);
-          });
-        },
-      }),
-    },
-  },
-};
 
 export function FiatOffRamp() {
   const { register, handleSubmit, control, formState: { errors } } = useForm<FormData>({

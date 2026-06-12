@@ -8,14 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { AlertCircle, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, ArrowUpDown, XCircle, Search, Trophy } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { AlertCircle, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, ArrowUpDown, XCircle, Search, Trophy } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: LeaderboardsMutualRankingsScreen
@@ -55,25 +54,6 @@ const MOCK_RANKINGS: RankingItem[] = Array.from({ length: 25 }, (_, i) => ({
   avatarUrl: `https://i.pravatar.cc/150?img=${i + 1}`,
 }));
 
-const useQuery = (queryKey: string[]) => {
-  const [data, setData] = useState<RankingItem[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    setIsLoading(true); setIsError(false); setError(null);
-    const timer = setTimeout(() => {
-      if (queryKey[0] === 'leaderboards.getMutualRankings') {
-        if (Math.random() < 0.1) { setIsError(true); setError(new Error('Failed to fetch rankings.')); setData([]); }
-        else { setData(MOCK_RANKINGS); }
-      } else { setIsError(true); setError(new Error('Unknown tRPC query.')); setData([]); }
-      setIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [queryKey]);
-  return { data, isLoading, isError, error };
-};
 
 const LeaderboardsMutualRankingsScreen: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');

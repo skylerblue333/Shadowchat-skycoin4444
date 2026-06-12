@@ -1,19 +1,19 @@
 // @ts-nocheck
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { Calendar } from '@/components/ui/calendar'; // Assuming shadcn/ui calendar component
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button component
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card components
-import { Input } from '@/components/ui/input'; // Assuming shadcn/ui input component
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'; // Assuming shadcn/ui popover components
-import { format } from 'date-fns';
-import { ChevronLeft, ChevronRight, PlusCircle, Sun, Moon } from 'lucide-react'; // Icons
+import { Calendar } from '@/components/ui/calendar';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import * as __ns_date_fns_1 from 'date-fns';
+const { format } = (__ns_date_fns_1 as any);
+import * as __ns_lucide_react_2 from 'lucide-react';
+const { ChevronLeft, ChevronRight, PlusCircle, Sun, Moon } = (__ns_lucide_react_2 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: EventCalendarScreen
@@ -32,64 +32,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  event: {
-    getEvents: {
-      useQuery: (date: Date) => {
-        const [data, setData] = useState<Event[] | null>(null);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-
-        useEffect(() => {
-          setIsLoading(true);
-          setIsError(false);
-          // Simulate API call
-          setTimeout(() => {
-            if (Math.random() > 0.1) { // Simulate occasional error
-              const mockEvents: Event[] = [
-                { id: '1', title: 'Team Meeting', date: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 0), description: 'Discuss Q3 strategy' },
-                { id: '2', title: 'Project Deadline', date: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 0), description: 'Submit final report' },
-              ];
-              setData(mockEvents);
-            } else {
-              setIsError(true);
-            }
-            setIsLoading(false);
-          }, 1000);
-        }, [date]);
-
-        return { data, isLoading, isError };
-      },
-    },
-    addEvent: {
-      useMutation: () => {
-        const [isLoading, setIsLoading] = useState(false);
-        const [isError, setIsError] = useState(false);
-        const [isSuccess, setIsSuccess] = useState(false);
-
-        const mutate = async (newEvent: Omit<Event, 'id'>) => {
-          setIsLoading(true);
-          setIsError(false);
-          setIsSuccess(false);
-          return new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (Math.random() > 0.2) { // Simulate occasional error
-                setIsSuccess(true);
-                setIsLoading(false);
-                resolve({ id: String(Math.random()), ...newEvent });
-              } else {
-                setIsError(true);
-                setIsLoading(false);
-                reject(new Error('Failed to add event'));
-              }
-            }, 800);
-          });
-        };
-        return { mutate, isLoading, isError, isSuccess };
-      },
-    },
-  },
-};
 
 interface Event {
   id: string;

@@ -7,14 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2 } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoEnsManagerScreen
@@ -42,34 +41,6 @@ type EnsName = {
 };
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  ens: {
-    getEnsNames: {
-      useQuery: (address: string) => {
-        const mockData: EnsName[] = [
-          { name: 'example.eth', address: '0x123...', isPrimary: true, expiry: '2025-12-31' },
-          { name: 'test.eth', address: '0x123...', isPrimary: false, expiry: '2024-10-20' },
-        ];
-        return { data: mockData, isLoading: false, isError: false, error: null };
-      },
-    },
-    setPrimaryEns: {
-      useMutation: () => {
-        return { mutate: (name: string) => console.log(`Setting primary ENS: ${name}`), isLoading: false, isError: false, error: null };
-      },
-    },
-    transferEns: {
-      useMutation: () => {
-        return { mutate: (name: string, newAddress: string) => console.log(`Transferring ENS: ${name} to ${newAddress}`), isLoading: false, isError: false, error: null };
-      },
-    },
-    renewEns: {
-      useMutation: () => {
-        return { mutate: (name: string) => console.log(`Renewing ENS: ${name}`), isLoading: false, isError: false, error: null };
-      },
-    },
-  },
-};
 
 export function CryptoEnsManagerScreen() {
   const [walletAddress, setWalletAddress] = useState('');

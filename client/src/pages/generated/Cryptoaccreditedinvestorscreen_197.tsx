@@ -1,17 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-import { Button } from '@/components/ui/button'; // shadcn/ui button
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
-import { Checkbox } from '@/components/ui/checkbox'; // shadcn/ui checkbox
-import { Label } from '@/components/ui/label'; // shadcn/ui label
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui skeleton
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Skeleton } from '@/components/ui/skeleton';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoAccreditedInvestorScreen
@@ -36,18 +34,6 @@ interface AccreditedInvestorStatus {
 }
 
 // Simulate tRPC API call
-const trpc = {
-  investor: {
-    getAccreditedStatus: {
-      useQuery: () => ({
-        data: { isAccredited: true, reason: 'Meets income requirements' } as AccreditedInvestorStatus,
-        isLoading: false,
-        isError: false,
-        error: null,
-      }),
-    },
-  },
-};
 
 export const CryptoAccreditedInvestorScreen: React.FC = () => {
   const { data, isLoading, isError, error } = useStubQuery();

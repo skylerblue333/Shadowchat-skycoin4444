@@ -5,8 +5,6 @@ import React, { useState } from 'react';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoStopLossManager
@@ -25,8 +23,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock external dependencies for compilation
-const useQuery = () => ({ data: [], isLoading: false, error: null });
-const useMutation = () => ({ mutate: () => {}, isLoading: false, error: null });
 const Input = (props: any) => <input {...props} />;
 const Button = (props: any) => <button {...props} />;
 const Card = (props: any) => <div {...props} />;
@@ -47,50 +43,6 @@ interface StopLossOrder {
 }
 
 // Mock tRPC object for compilation
-const trpc = {
-  stopLoss: {
-    list: {
-      useQuery: () => ({
-        data: [
-          { id: '1', crypto: 'BTC', triggerPrice: 60000, stopPrice: 59000, quantity: 0.5, isActive: true },
-          { id: '2', crypto: 'ETH', triggerPrice: 3000, stopPrice: 2900, quantity: 2, isActive: false },
-        ] as StopLossOrder[],
-        isLoading: false,
-        error: null,
-      }),
-    },
-    create: {
-      useMutation: () => ({
-        mutate: (newOrder: Omit<StopLossOrder, 'id'>) => {
-          console.log('Creating order:', newOrder);
-          toast.success('Stop loss order created!');
-        },
-        isLoading: false,
-        error: null,
-      }),
-    },
-    update: {
-      useMutation: () => ({
-        mutate: (updatedOrder: StopLossOrder) => {
-          console.log('Updating order:', updatedOrder);
-          toast.success('Stop loss order updated!');
-        },
-        isLoading: false,
-        error: null,
-      }),
-    },
-    delete: {
-      useMutation: () => ({
-        mutate: (id: string) => {
-          console.log('Deleting order:', id);
-          toast.success('Stop loss order deleted!');
-        },
-        isLoading: false,
-        error: null,
-      }),
-    },
-  },
-};
 
 const CryptoStopLossManager: React.FC = () => {
   const [crypto, setCrypto] = useState('');

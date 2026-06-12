@@ -9,8 +9,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: AlgorandDashboard
@@ -29,25 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC-like API client
-const trpc = {
-  algorand: {
-    getDashboardData: async () => {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      if (Math.random() < 0.1) {
-        throw new Error('Failed to fetch Algorand data');
-      }
-      return {
-        totalAccounts: 30000000,
-        totalTransactions: 3000000000,
-        currentPrice: 0.15,
-        marketCap: 1200000000,
-        dailyVolume: 50000000,
-        stakingYield: 0.05,
-      };
-    },
-  },
-};
 
 type DashboardData = {
   totalAccounts: number;

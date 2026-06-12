@@ -9,8 +9,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SocialMessageSearch
@@ -29,23 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Placeholder for tRPC hooks
-const trpc = {
-  message: {
-    search: (query: string) => new Promise<string[]>((resolve) => {
-      setTimeout(() => {
-        if (query.includes('error')) {
-          throw new Error('Failed to fetch messages');
-        }
-        const results = [
-          `Result for '${query}' 1`,
-          `Result for '${query}' 2`,
-          `Result for '${query}' 3`,
-        ];
-        resolve(results);
-      }, 1000);
-    }),
-  },
-};
 
 interface SocialMessageSearchProps {
   initialQuery?: string;

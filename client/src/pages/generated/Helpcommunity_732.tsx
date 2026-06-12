@@ -1,15 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { Button } from '@/components/ui/button'; // shadcn/ui button
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui skeleton
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: HelpCommunity
@@ -42,32 +40,6 @@ interface GetCommunityPostsResponse {
 }
 
 // Mock tRPC hook for fetching community posts
-const trpc = {
-  community: {
-    getPosts: {
-      useQuery: () => useQuery<GetCommunityPostsResponse>({
-        queryKey: ['communityPosts'],
-        queryFn: async () => {
-          // Simulate API call delay
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          // Simulate data or error
-          if (Math.random() < 0.1) {
-            throw new Error('Failed to load community posts.');
-          }
-          return {
-            posts: Array.from({ length: 5 }).map((_, i) => ({
-              id: `post-${i}`,
-              title: `Community Post Title ${i + 1}`,
-              content: `This is the content for community post number ${i + 1}. It discusses various topics related to SKYCOIN4444 and its ecosystem. Users can find answers, share insights, and collaborate here.`,
-              author: `User${i + 1}`,
-              createdAt: new Date().toISOString(),
-            })),
-          };
-        },
-      }),
-    },
-  },
-};
 
 const HelpCommunity: React.FC = () => {
   const { data, isLoading, isError, error, refetch } = useStubQuery();

@@ -10,8 +10,6 @@ import { Progress } from '@/components/ui/progress';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: GovernanceVoteWeight
@@ -30,30 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  governance: {
-    getVoteWeight: {
-      useQuery: (address: string) => useQuery<number, Error>({ queryKey: ['voteWeight', address], queryFn: async () => {
-        if (!address) return 0;
-        await new Promise(resolve => setTimeout(resolve, 500));
-        const weights: { [key: string]: number } = {
-          '0x123...abc': 1500,
-          '0x456...def': 800,
-          '0x789...ghi': 2300,
-        };
-        if (!weights[address]) throw new Error('Address not found');
-        return weights[address];
-      }}),
-    },
-    delegateVoteWeight: {
-      useMutation: () => useMutation<void, Error, { from: string; to: string; amount: number }>({ mutationFn: async ({ from, to, amount }) => {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (amount > 1000) throw new Error('Cannot delegate more than 1000 at once');
-        console.log(`Delegating ${amount} from ${from} to ${to}`);
-      }}),
-    },
-  },
-};
 
 interface GovernanceVoteWeightProps {
   className?: string;

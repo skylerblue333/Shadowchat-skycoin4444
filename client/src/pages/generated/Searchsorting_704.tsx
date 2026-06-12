@@ -11,8 +11,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SearchSorting
@@ -32,32 +30,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration
-const trpc = {
-  search: {
-    useQuery: (params: { query: string; sortBy: string }) => {
-      const [data, setData] = useState<string[] | null>(null);
-      const [isLoading, setIsLoading] = useState(true);
-      const [isError, setIsError] = useState(false);
-
-      useEffect(() => {
-        setIsLoading(true);
-        setIsError(false);
-        const timer = setTimeout(() => {
-          if (params.query === 'error') {
-            setIsError(true);
-            setData(null);
-          } else {
-            setData([`Result 1 for ${params.query} sorted by ${params.sortBy}`, `Result 2 for ${params.query} sorted by ${params.sortBy}`]);
-          }
-          setIsLoading(false);
-        }, 1000);
-        return () => clearTimeout(timer);
-      }, [params.query, params.sortBy]);
-
-      return { data, isLoading, isError };
-    },
-  },
-};
 
 type SortOption = 'relevance' | 'date' | 'name';
 

@@ -1,8 +1,11 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { toast } from 'sonner';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as __ns_sonner_1 from 'sonner';
+const { toast } = (__ns_sonner_1 as any);
+import * as __ns_react_hook_form_2 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_2 as any);
+import * as __ns__hookform_resolvers_zod_3 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_3 as any);
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,8 +18,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SuspiciousActivityReport

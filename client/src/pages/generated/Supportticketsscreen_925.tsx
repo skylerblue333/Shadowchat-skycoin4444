@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SupportTicketsScreen
@@ -56,72 +54,6 @@ interface FilterOptions {
 }
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  ticket: {
-    list: {
-      useQuery: (filters: FilterOptions) => {
-        // Simulate API call
-        const tickets: Ticket[] = [
-          {
-            id: '1',
-            subject: 'Issue with login',
-            description: 'Users are unable to log in.',
-            status: 'open',
-            priority: 'high',
-            createdAt: '2023-01-01T10:00:00Z',
-            updatedAt: '2023-01-01T10:00:00Z',
-            userId: 'user1',
-            userName: 'John Doe',
-            comments: [],
-          },
-          {
-            id: '2',
-            subject: 'Feature request: Dark mode',
-            description: 'Request for a dark mode feature.',
-            status: 'in_progress',
-            priority: 'medium',
-            createdAt: '2023-01-05T11:00:00Z',
-            updatedAt: '2023-01-06T14:00:00Z',
-            assigneeId: 'agent1',
-            assigneeName: 'Agent Smith',
-            userId: 'user2',
-            userName: 'Jane Smith',
-            comments: [],
-          },
-        ];
-        return { data: tickets, isLoading: false, isError: false, error: null };
-      },
-    },
-    getById: {
-      useQuery: (ticketId: string) => {
-        // Simulate API call
-        const ticket: Ticket | undefined = {
-          id: '1',
-          subject: 'Issue with login',
-          description: 'Users are unable to log in.',
-          status: 'open',
-          priority: 'high',
-          createdAt: '2023-01-01T10:00:00Z',
-          updatedAt: '2023-01-01T10:00:00Z',
-          userId: 'user1',
-          userName: 'John Doe',
-          comments: [],
-        };
-        return { data: ticket, isLoading: false, isError: false, error: null };
-      },
-    },
-    update: {
-      useMutation: () => {
-        return { mutate: (data: any) => console.log('Updating ticket:', data), isLoading: false, isError: false, error: null };
-      },
-    },
-    addComment: {
-      useMutation: () => {
-        return { mutate: (data: any) => console.log('Adding comment:', data), isLoading: false, isError: false, error: null };
-      },
-    },
-  },
-};
 
 const SupportTicketsScreen: React.FC = () => {
   const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);

@@ -9,8 +9,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ArcadeTournamentRules
@@ -36,24 +34,6 @@ type TournamentRule = {
 };
 
 // Placeholder for tRPC client setup
-const trpc = {
-  tournament: {
-    getRules: async (): Promise<TournamentRule[]> => {
-      // Simulate API call
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve([
-            { id: '1', title: 'Game Mode', description: 'Single elimination bracket.', isActive: true },
-            { id: '2', title: 'Player Count', description: '16 players maximum.', isActive: true },
-            { id: '3', title: 'Entry Fee', description: '100 SKYCOIN.', isActive: true },
-            { id: '4', title: 'Prize Pool', description: 'Winner takes all.', isActive: false },
-            { id: '5', title: 'Disconnection Policy', description: 'Disconnections result in a loss.', isActive: true },
-          ]);
-        }, 1000);
-      });
-    },
-  },
-};
 
 const ArcadeTournamentRules: React.FC = () => {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);

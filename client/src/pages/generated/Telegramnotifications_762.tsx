@@ -1,8 +1,10 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import * as __ns_react_hook_form_1 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_1 as any);
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as __ns__hookform_resolvers_zod_2 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_2 as any);
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,8 +15,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: TelegramNotifications

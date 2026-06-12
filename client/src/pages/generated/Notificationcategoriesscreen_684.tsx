@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect, useCallback } from 'react';
-import { Switch } from '@/components/ui/switch'; // Assuming shadcn/ui switch
-import { Label } from '@/components/ui/label'; // Assuming shadcn/ui label
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/components/ui/card'; // Assuming shadcn/ui card components
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: NotificationCategoriesScreen
@@ -38,65 +36,6 @@ type NotificationCategory = {
 };
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  notification: {
-    getCategories: {
-      useQuery: (options?: { onError?: (error: any) => void }) => {
-        const [data, setData] = useState<NotificationCategory[] | undefined>(undefined);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-        const [error, setError] = useState<any>(null);
-
-        useEffect(() => {
-          setIsLoading(true);
-          // Simulate API call
-          setTimeout(() => {
-            if (Math.random() > 0.1) { // Simulate occasional error
-              setData([
-                { id: '1', name: 'Mentions', enabled: true, description: 'Get notified when someone mentions you.' },
-                { id: '2', name: 'Direct Messages', enabled: false, description: 'Receive alerts for private messages.' },
-                { id: '3', name: 'System Alerts', enabled: true, description: 'Important updates about your account.' },
-              ]);
-              setIsError(false);
-            } else {
-              setIsError(true);
-              setError({ message: 'Failed to fetch categories.' });
-              options?.onError?.({ message: 'Failed to fetch categories.' });
-            }
-            setIsLoading(false);
-          }, 1000);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-    updateCategory: {
-      useMutation: (options?: { onSuccess?: () => void; onError?: (error: any) => void }) => {
-        const [isLoading, setIsLoading] = useState(false);
-        const [isError, setIsError] = useState(false);
-        const [error, setError] = useState<any>(null);
-
-        const mutate = useCallback(async (category: NotificationCategory) => {
-          setIsLoading(true);
-          setIsError(false);
-          setError(null);
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 500));
-          if (Math.random() > 0.1) { // Simulate occasional error
-            options?.onSuccess?.();
-          } else {
-            setIsError(true);
-            setError({ message: `Failed to update ${category.name}.` });
-            options?.onError?.({ message: `Failed to update ${category.name}.` });
-          }
-          setIsLoading(false);
-        }, [options?.onSuccess, options?.onError]);
-
-        return { mutate, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 const NotificationCategoriesScreen: React.FC = () => {
   const { data: categories, isLoading, isError, error, refetch } = useStubQuery();

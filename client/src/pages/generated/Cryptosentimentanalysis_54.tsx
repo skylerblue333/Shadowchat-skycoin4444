@@ -1,18 +1,17 @@
 // @ts-nocheck
 import React from 'react';
-import { cn } from '@/lib/utils'; // For shadcn/ui utility
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // Example shadcn/ui component
-import { Skeleton } from '@/components/ui/skeleton'; // For loading states
-import { Badge } from '@/components/ui/badge'; // For sentiment indicator
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // For error display
-import { Terminal } from 'lucide-react'; // Example icon for alert
+import { cn } from '@/lib/utils';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoSentimentAnalysis

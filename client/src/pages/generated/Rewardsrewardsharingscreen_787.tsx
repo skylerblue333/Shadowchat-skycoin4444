@@ -10,8 +10,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: RewardsRewardSharingScreen
@@ -31,44 +29,6 @@ function useStubMutation<T = any>() {
 
 // Mock tRPC client for demonstration purposes
 // In a real application, this would be configured to connect to a tRPC server
-const trpc = {
-  rewards: {
-    getRewards: async () => {
-      // Simulate API call
-      return new Promise<Reward[]>((resolve) => {
-        setTimeout(() => {
-          resolve([
-            { id: '1', name: 'Referral Bonus', amount: 100, currency: 'SKY' },
-            { id: '2', name: 'Staking Rewards', amount: 50, currency: 'SKY' },
-          ]);
-        }, 1000);
-      });
-    },
-    getShareOptions: async () => {
-      // Simulate API call
-      return new Promise<ShareOption[]>((resolve) => {
-        setTimeout(() => {
-          resolve([
-            { id: '1', name: 'Share with Friends', enabled: true },
-            { id: '2', name: 'Donate to Charity', enabled: false },
-          ]);
-        }, 800);
-      });
-    },
-    shareReward: async ({ recipient, amount }: { recipient: string; amount: number }) => {
-      // Simulate API call
-      return new Promise<string>((resolve, reject) => {
-        setTimeout(() => {
-          if (amount > 0 && recipient) {
-            resolve(`Successfully shared ${amount} SKY with ${recipient}`);
-          } else {
-            reject(new Error('Invalid recipient or amount.'));
-          }
-        }, 1500);
-      });
-    },
-  },
-};
 
 // Define types for rewards and sharing options
 interface Reward {

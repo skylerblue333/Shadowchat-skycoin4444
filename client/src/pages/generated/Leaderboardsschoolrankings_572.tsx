@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'; // shadcn/ui card
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'; // shadcn/ui table
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui skeleton for loading states
-import { AlertCircle, Loader2 } from 'lucide-react'; // Icons for error and loading
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui alert
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { AlertCircle, Loader2 } = (__ns_lucide_react_1 as any);
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: LeaderboardsSchoolRankings

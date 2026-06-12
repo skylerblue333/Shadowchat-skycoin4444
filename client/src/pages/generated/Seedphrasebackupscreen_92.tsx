@@ -1,19 +1,18 @@
 // @ts-nocheck
 import React, { useState, useCallback } from 'react';
-import { useSeedPhraseBackup } from '@/hooks/useSeedPhraseBackup'; // Custom hook for seed phrase logic
+const useSeedPhraseBackup: any = (..._args: any[]) => new Proxy(() => ({}), { get: () => (() => ({ data: undefined, isLoading: false, isError: false, error: null, mutate: () => {}, mutateAsync: async () => ({}), isPending: false })) });
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, Loader2 } from 'lucide-react'; // Icons for error and loading states
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal, Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SeedPhraseBackupScreen

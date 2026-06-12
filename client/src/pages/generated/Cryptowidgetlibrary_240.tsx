@@ -1,13 +1,12 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, ArrowDownRight, Activity, DollarSign, BarChart3, RefreshCw, Wallet, TrendingUp, TrendingDown, Star, Clock, Shield } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowUpRight, ArrowDownRight, Activity, DollarSign, BarChart3, RefreshCw, Wallet, TrendingUp, TrendingDown, Star, Clock, Shield } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoWidgetLibrary
@@ -26,41 +25,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks for demonstration
-const trpc = {
-  crypto: {
-    getMarketData: {
-      useQuery: () => {
-        const [data, setData] = useState<any>(null);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-
-        useEffect(() => {
-          const timer = setTimeout(() => {
-            setData({
-              bitcoin: { price: 64230.50, change24h: 2.4, volume: '32.5B', marketCap: '1.2T' },
-              ethereum: { price: 3450.20, change24h: -1.2, volume: '15.2B', marketCap: '415B' },
-              solana: { price: 145.80, change24h: 5.6, volume: '4.1B', marketCap: '65B' },
-              cardano: { price: 0.45, change24h: 0.8, volume: '850M', marketCap: '16B' },
-            });
-            setIsLoading(false);
-          }, 1500);
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { data, isLoading, isError, refetch: () => setIsLoading(true) };
-      }
-    },
-    getPortfolio: {
-      useQuery: () => {
-        return {
-          data: { totalValue: 12450.75, change24h: 3.2, assets: 5 },
-          isLoading: false,
-          isError: false
-        };
-      }
-    }
-  }
-};
 
 // Main Component
 export default function CryptoWidgetLibrary() {

@@ -5,14 +5,13 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoAvalancheDashboard
@@ -31,23 +30,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC-like API client for demonstration
-const trpc = {
-  crypto: {
-    getAvalancheDashboardData: async () => {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      if (Math.random() < 0.1) {
-        throw new Error('Failed to fetch Avalanche data');
-      }
-      return {
-        price: (Math.random() * 100).toFixed(2),
-        change24h: (Math.random() * 10 - 5).toFixed(2),
-        marketCap: (Math.random() * 100000000000).toFixed(2),
-        transactions: Math.floor(Math.random() * 1000000),
-      };
-    },
-  },
-};
 
 interface AvalancheDashboardData {
   price: string;

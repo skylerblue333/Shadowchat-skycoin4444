@@ -10,8 +10,6 @@ import { Textarea } from '@/components/ui/textarea';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: Skycoin4444ContractDeploymentScreen
@@ -30,26 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for contract deployment
-const trpc = {
-  crypto: {
-    deployContract: {
-      useMutation: () => useMutation<string, Error, { abi: string; bytecode: string; constructorArgs: string[] }>(
-        async (data) => {
-          // Simulate API call
-          return new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (Math.random() > 0.2) {
-                resolve(`0x${Math.random().toString(16).substring(2, 42)}`); // Mock contract address
-              } else {
-                reject(new Error('Failed to deploy contract. Please try again.'));
-              }
-            }, 1500);
-          });
-        }
-      ),
-    },
-  },
-};
 
 interface ContractDeploymentFormState {
   abi: string;

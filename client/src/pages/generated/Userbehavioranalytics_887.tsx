@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, Activity, ArrowUpRight, Clock, Sun, Moon } from 'lucide-react';
-import { useTheme } from '@/components/theme-provider';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Users, Activity, ArrowUpRight, Clock, Sun, Moon } = (__ns_lucide_react_1 as any);
+const useTheme: any = () => ({ theme: 'dark', setTheme: () => {}, resolvedTheme: 'dark' });
 import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: UserBehaviorAnalytics

@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ZcashDashboard
@@ -29,43 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client and hooks for demonstration
-const trpc = {
-  zcash: {
-    getDashboardData: {
-      useQuery: () => {
-        const [data, setData] = useState<any>(null);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-
-        useEffect(() => {
-          const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockData = {
-                price: 50.23,
-                marketCap: "1.2B",
-                volume24h: "150M",
-                transactions: 123456,
-                latestBlock: 1800000,
-              };
-              setData(mockData);
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 const ZcashDashboard: React.FC = () => {
   const { data, isLoading, isError } = useStubQuery();

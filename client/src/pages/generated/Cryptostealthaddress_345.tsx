@@ -10,8 +10,6 @@ import { Switch } from '@/components/ui/switch';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoStealthAddress
@@ -30,28 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Placeholder for tRPC hooks - replace with actual tRPC client setup
-const trpc = {
-  crypto: {
-    generateStealthAddress: {
-      useMutation: () => ({
-        mutate: (data: { publicKey: string }) => {
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              if (data.publicKey === 'error') {
-                resolve({ success: false, error: 'Invalid public key' });
-              } else {
-                resolve({ success: true, stealthAddress: `0xStealthAddress${Math.random().toString(16).slice(2, 10)}` });
-              }
-            }, 1500);
-          });
-        },
-        isLoading: false,
-        isError: false,
-        error: null,
-      }),
-    },
-  },
-};
 
 interface GenerateStealthAddressResponse {
   success: boolean;

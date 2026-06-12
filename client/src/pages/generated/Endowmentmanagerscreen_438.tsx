@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui path
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,8 +10,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: EndowmentManagerScreen
@@ -31,22 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for demonstration. In a real app, this would come from your tRPC client.
-const trpc = {
-  endowment: {
-    getSummary: () => ({ queryKey: ['endowmentSummary'], queryFn: async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-      if (Math.random() < 0.1) throw new Error('Failed to fetch endowment data.');
-      return {
-        totalValue: 1234567.89,
-        investments: [
-          { id: '1', name: 'Tech Fund A', value: 500000, yield: 0.12 },
-          { id: '2', name: 'Green Energy B', value: 300000, yield: 0.08 },
-          { id: '3', name: 'Real Estate C', value: 434567.89, yield: 0.05 },
-        ],
-      };
-    } }),
-  },
-};
 
 interface Investment {
   id: string;

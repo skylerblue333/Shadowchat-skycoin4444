@@ -3,15 +3,14 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { SunIcon, MoonIcon } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { SunIcon, MoonIcon } = (__ns_lucide_react_1 as any);
 import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoPortfolioDashboard
@@ -45,44 +44,6 @@ interface PortfolioData {
 }
 
 // Mock tRPC hook for demonstration
-const trpc = {
-  portfolio: {
-    getDashboardData: {
-      useQuery: () => {
-        const [data, setData] = React.useState<PortfolioData | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockData: PortfolioData = {
-                totalValueUSD: 12345.67,
-                items: [
-                  { id: '1', name: 'Bitcoin', symbol: 'BTC', amount: 0.5, valueUSD: 15000 },
-                  { id: '2', name: 'Ethereum', symbol: 'ETH', amount: 3, valueUSD: 9000 },
-                  { id: '3', name: 'SKYCOIN', symbol: 'SKY', amount: 1000, valueUSD: 4444 },
-                ],
-              };
-              setData(mockData);
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 const CryptoPortfolioDashboard: React.FC = () => {
   const { data, isLoading, isError } = useStubQuery();

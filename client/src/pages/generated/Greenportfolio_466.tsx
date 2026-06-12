@@ -1,19 +1,18 @@
 // @ts-nocheck
 import React, { useState, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'; // shadcn/ui
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui
-import { Badge } from '@/components/ui/badge'; // shadcn/ui
-import { Button } from '@/components/ui/button'; // shadcn/ui
-import { Terminal, TrendingUp, TrendingDown, RefreshCw, Leaf, DollarSign, Activity, Wallet } from 'lucide-react'; // Lucide icons
-import { Progress } from '@/components/ui/progress'; // shadcn/ui
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal, TrendingUp, TrendingDown, RefreshCw, Leaf, DollarSign, Activity, Wallet } = (__ns_lucide_react_1 as any);
+import { Progress } from '@/components/ui/progress';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: GreenPortfolio

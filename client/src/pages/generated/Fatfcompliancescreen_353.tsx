@@ -10,8 +10,6 @@ import { Badge } from '@/components/ui/badge';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: FatfComplianceScreen
@@ -32,56 +30,6 @@ function useStubMutation<T = any>() {
 
 // Mock tRPC client for demonstration purposes
 // In a real application, this would be configured to connect to your tRPC backend
-const trpc = {
-  fatf: {
-    getComplianceData: {
-      useQuery: () => {
-        // Simulate API call
-        const [data, setData] = React.useState<any>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            try {
-              setIsLoading(true);
-              setIsError(false);
-              setError(null);
-              // Simulate network delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-
-              // Simulate success or error randomly
-              if (Math.random() > 0.2) { // 80% success rate
-                setData({
-                  status: 'Compliant',
-                  lastAudit: '2023-10-26',
-                  nextAudit: '2024-10-26',
-                  riskLevel: 'Low',
-                  recommendations: [
-                    { id: 1, description: 'Review transaction monitoring rules', status: 'Completed' },
-                    { id: 2, description: 'Update KYC documentation for high-risk clients', status: 'Pending' },
-                    { id: 3, description: 'Conduct annual AML training', status: 'In Progress' },
-                  ],
-                });
-              } else {
-                throw new Error('Failed to fetch FATF compliance data.');
-              }
-            } catch (err) {
-              setIsError(true);
-              setError(err as Error);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface Recommendation {
   id: number;

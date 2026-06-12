@@ -10,8 +10,6 @@ import { Switch } from '@/components/ui/switch';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: TrustFundScreen
@@ -30,72 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client and hooks for demonstration
-const trpc = {
-  trustFund: {
-    getDetails: {
-      useQuery: (params: { id: string }) => {
-        const [data, setData] = useState<any>(null);
-        const [isLoading, setIsLoading] = useState(true);
-        const [isError, setIsError] = useState(false);
-
-        useEffect(() => {
-          const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              if (params.id === 'error') {
-                throw new Error('Failed to fetch trust fund details');
-              }
-              setData({
-                id: params.id,
-                name: 'SKYCOIN4444 Trust Fund',
-                balance: Math.floor(Math.random() * 100000) + 10000,
-                currency: 'USD',
-                lastUpdated: new Date().toLocaleString(),
-              });
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, [params.id]);
-
-        return { data, isLoading, isError };
-      },
-    },
-    updateFund: {
-      useMutation: () => {
-        const [isLoading, setIsLoading] = useState(false);
-        const [isSuccess, setIsSuccess] = useState(false);
-        const [isError, setIsError] = useState(false);
-
-        const mutate = async (data: { id: string; amount: number }) => {
-          setIsLoading(true);
-          setIsError(false);
-          setIsSuccess(false);
-          try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            if (data.amount < 0) {
-              throw new Error('Amount cannot be negative');
-            }
-            setIsSuccess(true);
-          } catch (error) {
-            setIsError(true);
-          } finally {
-            setIsLoading(false);
-          }
-        };
-
-        return { mutate, isLoading, isSuccess, isError };
-      },
-    },
-  },
-};
 
 interface TrustFundScreenProps {
   fundId: string;

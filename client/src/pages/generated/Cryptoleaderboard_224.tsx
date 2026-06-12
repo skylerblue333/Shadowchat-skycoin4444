@@ -4,14 +4,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoLeaderboard
@@ -38,44 +37,6 @@ interface LeaderboardEntry {
 }
 
 // Mock tRPC hook for fetching leaderboard data
-const trpc = {
-  crypto: {
-    getLeaderboard: {
-      useQuery: () => {
-        // Simulate API call with loading and error states
-        const [data, setData] = React.useState<LeaderboardEntry[] | null>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-              // Simulate network delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockData: LeaderboardEntry[] = Array.from({ length: 10 }, (_, i) => ({
-                id: `user-${i + 1}`,
-                rank: i + 1,
-                name: `User ${i + 1}`,
-                score: Math.floor(Math.random() * 10000) + 1000,
-                change: Math.floor(Math.random() * 200) - 100,
-              }));
-              setData(mockData);
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 export function CryptoLeaderboard() {
   const { data: leaderboard, isLoading, isError } = useStubQuery();

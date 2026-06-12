@@ -3,15 +3,14 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useTheme } from '@/components/theme-provider';
-import { Sun, Moon } from 'lucide-react';
+const useTheme: any = () => ({ theme: 'dark', setTheme: () => {}, resolvedTheme: 'dark' });
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Sun, Moon } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ArweaveViewer
@@ -30,28 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration
-const trpc = {
-  arweave: {
-    getTransaction: (id: string) =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (id === 'valid-tx-id') {
-            resolve({
-              id: 'valid-tx-id',
-              owner: 'some-owner-address',
-              target: 'some-target-address',
-              dataSize: '1024',
-              block: { height: 123456, timestamp: Date.now() },
-            });
-          } else if (id === 'error-tx-id') {
-            reject(new Error('Transaction not found'));
-          } else {
-            resolve(null);
-          }
-        }, 1000);
-      }),
-  },
-};
 
 interface TransactionData {
   id: string;

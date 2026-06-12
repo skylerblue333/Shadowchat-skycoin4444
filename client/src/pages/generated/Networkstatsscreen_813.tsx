@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Placeholder for shadcn/ui Card
-import { Button } from '@/components/ui/button'; // Placeholder for shadcn/ui Button
-import { Switch } from '@/components/ui/switch'; // Placeholder for shadcn/ui Switch
-import { Label } from '@/components/ui/label'; // Placeholder for shadcn/ui Label
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: NetworkStatsScreen
@@ -30,38 +28,6 @@ function useStubMutation<T = any>() {
 
 // Mock tRPC client for demonstration purposes
 // In a real application, this would be imported from your tRPC setup
-const trpc = {
-  network: {
-    getStats: {
-      useQuery: (options?: any) => {
-        // Simulate API call with loading, error, and data states
-        const { data, isLoading, isError, error } = useQuery<any, Error>(
-          ['networkStats'],
-          async () => {
-            return new Promise((resolve, reject) => {
-              setTimeout(() => {
-                if (Math.random() > 0.1) { // Simulate occasional error
-                  resolve({
-                    totalNodes: 12345,
-                    activeNodes: 9876,
-                    transactionsPerSecond: 123.45,
-                    avgBlockTime: 15.2,
-                    networkHashRate: '500 TH/s',
-                    lastUpdated: new Date().toLocaleString(),
-                  });
-                } else {
-                  reject(new Error('Failed to fetch network stats.'));
-                }
-              }, 1500);
-            });
-          },
-          options
-        );
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 const NetworkStatsScreen: React.FC = () => {
   const { data, isLoading, isError, error, refetch } = useStubQuery();

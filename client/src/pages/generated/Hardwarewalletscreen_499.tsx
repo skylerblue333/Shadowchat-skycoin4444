@@ -10,8 +10,6 @@ import { Switch } from '@/components/ui/switch';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: HardwareWalletScreen
@@ -30,26 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  wallet: {
-    getWalletStatus: {
-      useQuery: () => useQuery<any, Error>(['walletStatus'], async () => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (Math.random() > 0.9) throw new Error('Failed to fetch wallet status');
-        return { connected: Math.random() > 0.5, balance: (Math.random() * 1000).toFixed(2), currency: 'SKY' };
-      }),
-    },
-    connectWallet: {
-      useMutation: () => useMutation<any, Error, { deviceId: string }>(async ({ deviceId }) => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        if (deviceId === 'error') throw new Error('Failed to connect to device');
-        return { success: true, message: `Connected to ${deviceId}` };
-      }),
-    },
-  },
-};
 
 type HardwareWalletScreenProps = {};
 

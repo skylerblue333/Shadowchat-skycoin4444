@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { cn } from '@/lib/utils'; // Assuming shadcn/ui utils path
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,8 +10,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoSavingsAccountScreen
@@ -30,41 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be generated.
-const trpc = {
-  crypto: {
-    getSavingsAccount: {
-      useQuery: () => {
-        // Simulate loading, error, and success states
-        const [data, setData] = React.useState<SavingsAccount | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) {
-              setIsError(true);
-              setError(new Error('Failed to fetch savings account data.'));
-              setIsLoading(false);
-            } else {
-              setData({
-                id: 'acc_123',
-                currency: 'SKY',
-                balance: 12345.67,
-                interestRate: 0.05,
-                lastUpdated: new Date().toISOString(),
-              });
-              setIsLoading(false);
-            }
-          }, 1500);
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface SavingsAccount {
   id: string;

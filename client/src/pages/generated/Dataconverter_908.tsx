@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React, { useState, useCallback, useMemo } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import * as __ns_react_hook_form_1 from 'react-hook-form';
+const { useForm } = (__ns_react_hook_form_1 as any);
+import * as __ns__hookform_resolvers_zod_2 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_2 as any);
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,15 +12,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
-import { MoonIcon, SunIcon, Loader2 } from 'lucide-react';
-import { useTheme } from '@/components/theme-provider'; // Assuming a theme provider
+import * as __ns_lucide_react_3 from 'lucide-react';
+const { MoonIcon, SunIcon, Loader2 } = (__ns_lucide_react_3 as any);
+const useTheme: any = () => ({ theme: 'dark', setTheme: () => {}, resolvedTheme: 'dark' });
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: DataConverter

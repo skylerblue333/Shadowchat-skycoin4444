@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React from 'react';
-import { cn } from '@/lib/utils'; // Utility for Tailwind classes
+import { cn } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, Wallet } from 'lucide-react'; // Icons
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal, Wallet } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoStakingRewards
@@ -44,40 +43,6 @@ interface CryptoStakingRewardsProps {
 }
 
 // Mock tRPC API context for demonstration. In a real app, this would come from your tRPC client setup.
-const trpc = {
-  staking: {
-    getRewards: {
-      useQuery: () => {
-        // Simulate loading, error, and data states
-        const [data, setData] = React.useState<StakingReward[] | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) { // Simulate an error 20% of the time
-              setIsError(true);
-              setError(new Error('Failed to fetch staking rewards.'));
-              setIsLoading(false);
-            } else {
-              setData([
-                { id: '1', asset: 'ETH', amount: 0.05, rewardDate: '2023-01-15', status: 'completed' },
-                { id: '2', asset: 'ADA', amount: 15.2, rewardDate: '2023-01-16', status: 'pending' },
-                { id: '3', asset: 'DOT', amount: 2.1, rewardDate: '2023-01-17', status: 'completed' },
-                { id: '4', asset: 'SOL', amount: 0.12, rewardDate: '2023-01-18', status: 'pending' },
-              ]);
-              setIsLoading(false);
-            }
-          }, 1500); // Simulate network delay
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 const CryptoStakingRewards: React.FC<any> = () => {
   // Use tRPC hook to fetch staking rewards

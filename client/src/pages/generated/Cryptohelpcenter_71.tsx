@@ -1,15 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoHelpCenter
@@ -29,45 +27,6 @@ function useStubMutation<T = any>() {
 
 // Placeholder for tRPC client and hooks
 // In a real application, this would be imported from your tRPC setup
-const trpc = {
-  help: {
-    getArticles: {
-      useQuery: () => {
-        // Simulate loading, error, and data states
-        const [data, setData] = React.useState<Array<{id: string; question: string; answer: string}>>([]);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            try {
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1000));
-              if (Math.random() > 0.8) { // Simulate error 20% of the time
-                throw new Error("Failed to fetch help articles.");
-              }
-              setData([
-                { id: "1", question: "How do I buy crypto?", answer: "You can buy crypto through our platform using various payment methods, including bank transfers and credit/debit cards." },
-                { id: "2", question: "What is a blockchain?", answer: "A blockchain is a decentralized, distributed ledger technology that records transactions across many computers." },
-                { id: "3", question: "How secure is my wallet?", answer: "Your wallet security is paramount. We employ multi-factor authentication, encryption, and regular security audits to protect your assets." },
-                { id: "4", question: "What are transaction fees?", answer: "Transaction fees are small charges incurred when you send or trade cryptocurrencies, covering network processing costs." },
-              ]);
-            } catch (err) {
-              setIsError(true);
-              setError(err as Error);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface CryptoHelpCenterProps {
   // No specific props for this component, but can be extended

@@ -1,18 +1,16 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { api } from '@/utils/api'; // Assuming tRPC client setup
+const api: any = new Proxy({}, { get: () => new Proxy({}, { get: () => ({ useQuery: () => ({ data: undefined, isLoading: false, isError: false, error: null }), useMutation: () => ({ mutate: () => {}, mutateAsync: async () => ({}), isPending: false }) }) }) });
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils'; // Utility for conditional class names
+import { cn } from '@/lib/utils';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoNetWorthTracker

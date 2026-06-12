@@ -1,15 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui components are in ./ui
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Skeleton } from '@/components/ui/skeleton'; // For loading states
+import { Skeleton } from '@/components/ui/skeleton';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ScoreBoard
@@ -29,42 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hooks for demonstration purposes
-const trpc = {
-  arcade: {
-    getScoreBoard: {
-      useQuery: () => {
-        const [data, setData] = React.useState<{ scores: { id: string; player: string; score: number }[] } | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            try {
-              setIsLoading(true);
-              // Simulate API call delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockScores = [
-                { id: '1', player: 'PlayerOne', score: 1500 },
-                { id: '2', player: 'PlayerTwo', score: 1200 },
-                { id: '3', player: 'PlayerThree', score: 1000 },
-                { id: '4', player: 'PlayerFour', score: 900 },
-                { id: '5', player: 'PlayerFive', score: 750 },
-              ];
-              setData({ scores: mockScores });
-            } catch (error) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 interface ScoreBoardProps {}
 

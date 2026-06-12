@@ -9,8 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: AddressVerification
@@ -39,30 +37,6 @@ type Address = {
 type VerifyAddressInput = Address;
 type VerifyAddressOutput = { success: boolean; message?: string };
 
-const trpc = {
-  onboarding: {
-    verifyAddress: {
-      useMutation: () => {
-        return useMutation<VerifyAddressOutput, Error, VerifyAddressInput>({
-          mutationFn: async (data) => {
-            // Simulate API call
-            return new Promise((resolve, reject) => {
-              setTimeout(() => {
-                if (data.street.includes('Error')) {
-                  reject(new Error('Invalid address details.'));
-                } else if (data.zip === '99999') {
-                  resolve({ success: false, message: 'Address not found.' });
-                } else {
-                  resolve({ success: true, message: 'Address verified successfully!' });
-                }
-              }, 1500);
-            });
-          },
-        });
-      },
-    },
-  },
-};
 
 export function AddressVerification() {
   const [address, setAddress] = useState<Address>({

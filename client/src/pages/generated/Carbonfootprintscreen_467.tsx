@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Progress } from "@/components/ui/progress";
-import { Leaf, AlertCircle, Activity, Zap, Server, ArrowRightLeft } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Progress } from '@/components/ui/progress';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Leaf, AlertCircle, Activity, Zap, Server, ArrowRightLeft } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CarbonFootprintScreen
@@ -47,50 +46,6 @@ interface CarbonMetrics {
 }
 
 // Mock tRPC hook
-const trpc = {
-  carbonFootprint: {
-    getMetrics: {
-      useQuery: () => {
-        const [data, setData] = React.useState<CarbonMetrics | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        const fetchData = React.useCallback(() => {
-          setIsLoading(true);
-          setIsError(false);
-          setTimeout(() => {
-            // Simulate 5% chance of error for robustness testing
-            if (Math.random() < 0.05) {
-              setIsError(true);
-              setIsLoading(false);
-              return;
-            }
-            setData({
-              totalEmissions: 12450.5,
-              unit: 'kg CO2e',
-              lastUpdated: new Date().toISOString(),
-              breakdown: [
-                { category: 'Network Consensus', value: 8500.2, icon: 'server', percentage: 68 },
-                { category: 'Transaction Processing', value: 2100.3, icon: 'activity', percentage: 17 },
-                { category: 'Smart Contract Execution', value: 1200.0, icon: 'zap', percentage: 10 },
-                { category: 'Cross-chain Bridges', value: 650.0, icon: 'arrow-right-left', percentage: 5 },
-              ],
-              sustainabilityScore: 85,
-              equivalentTrees: 520,
-            });
-            setIsLoading(false);
-          }, 1500);
-        }, []);
-
-        React.useEffect(() => {
-          fetchData();
-        }, [fetchData]);
-
-        return { data, isLoading, isError, error: null, refetch: fetchData };
-      }
-    }
-  }
-};
 
 export default function CarbonFootprintScreen() {
   const { data, isLoading, isError, refetch } = useStubQuery();

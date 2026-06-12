@@ -9,8 +9,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: HelpExpertsScreen
@@ -78,31 +76,6 @@ const mockUseQuery = <TData, TError>(queryKey: string[], queryFn: () => Promise<
 };
 
 // Mock tRPC client structure
-const trpc = {
-  expert: {
-    list: {
-      useQuery: (query: { search?: string }) => mockUseQuery<Expert[], Error>(
-        ['expert.list', query.search],
-        async () => {
-          const allExperts: Expert[] = [
-            { id: '1', name: 'Alice Johnson', specialty: 'Billing', available: true },
-            { id: '2', name: 'Bob Williams', specialty: 'Technical Support', available: false },
-            { id: '3', name: 'Charlie Brown', specialty: 'Account Management', available: true },
-            { id: '4', name: 'Diana Prince', specialty: 'Security', available: true },
-            { id: '5', name: 'Eve Adams', specialty: 'Product Features', available: false },
-          ];
-          if (query.search) {
-            return allExperts.filter(expert =>
-              expert.name.toLowerCase().includes(query.search!.toLowerCase()) ||
-              expert.specialty.toLowerCase().includes(query.search!.toLowerCase())
-            );
-          }
-          return allExperts;
-        }
-      ),
-    },
-  },
-};
 
 export function HelpExpertsScreen() {
   const [searchTerm, setSearchTerm] = useState('');

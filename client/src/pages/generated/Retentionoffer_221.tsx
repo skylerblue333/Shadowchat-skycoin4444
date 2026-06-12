@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: RetentionOffer
@@ -29,25 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Placeholder for tRPC hook. In a real app, this would come from your tRPC client.
-const trpc = {
-  crypto: {
-    getRetentionOffer: () => new Promise<any>((resolve) => {
-      setTimeout(() => {
-        // Simulate a successful fetch after 2 seconds
-        resolve({ offerId: 'RETENTION-123', amount: 100, currency: 'SKY', expiry: '2026-12-31' });
-      }, 2000);
-    }),
-    acceptRetentionOffer: (offerId: string) => new Promise<any>((resolve, reject) => {
-      setTimeout(() => {
-        if (offerId === 'RETENTION-123') {
-          resolve({ success: true, message: 'Offer accepted!' });
-        } else {
-          reject(new Error('Invalid offer ID'));
-        }
-      }, 1500);
-    }),
-  },
-};
 
 interface RetentionOfferProps {
   userId: string;

@@ -7,8 +7,6 @@ import { cn } from '@/lib/utils';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: TornadoCashAlternative
@@ -27,24 +25,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client and types
-const trpc = {
-  mixer: {
-    mixFunds: {
-      useMutation: () => useMutation<string, Error, { amount: number; recipient: string }>({ mutationFn: async (data) => {
-        // Simulate API call
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (data.amount > 0 && data.recipient) {
-              resolve(`Funds mixed successfully for ${data.amount} to ${data.recipient}`);
-            } else {
-              reject(new Error('Invalid amount or recipient'));
-            }
-          }, 1500);
-        });
-      } })
-    }
-  }
-};
 
 const mixFundsSchema = z.object({
   amount: z.number().positive('Amount must be positive'),

@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button"; // shadcn/ui button
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // shadcn/ui card
-import { Switch } from "@/components/ui/switch"; // shadcn/ui switch for dark mode
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CommunityModerationTools
@@ -29,27 +27,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration
-const trpc = {
-  moderation: {
-    getPendingPosts: {
-      useQuery: () => useQuery<string[], Error>({
-        queryKey: ["pendingPosts"],
-        queryFn: async () => {
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          if (Math.random() > 0.8) throw new Error("Failed to fetch posts");
-          return ["Post 1: Spam content", "Post 2: Hate speech", "Post 3: Misinformation"];
-        },
-      }),
-    },
-    approvePost: {
-      useMutation: () => ({ mutate: (id: string) => console.log(`Approving ${id}`), isLoading: false }),
-    },
-    rejectPost: {
-      useMutation: () => ({ mutate: (id: string) => console.log(`Rejecting ${id}`), isLoading: false }),
-    },
-  },
-};
 
 interface CommunityModerationToolsProps {}
 

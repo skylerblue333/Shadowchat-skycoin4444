@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card component
-import { Button } from '@/components/ui/button'; // shadcn/ui Button component
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui Skeleton component for loading states
-import { Switch } from '@/components/ui/switch'; // shadcn/ui Switch for dark theme toggle
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Switch } from '@/components/ui/switch';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CommunityModerationAnalytics
@@ -30,33 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  community: {
-    getModerationAnalytics: async () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          if (Math.random() > 0.1) { // Simulate occasional errors
-            resolve({
-              totalReports: 1234,
-              pendingReviews: 56,
-              moderatorsOnline: 12,
-              topReportedUsers: [
-                { id: 'user1', name: 'User A', reports: 15 },
-                { id: 'user2', name: 'User B', reports: 12 },
-              ],
-              recentActions: [
-                { id: 'action1', type: 'Ban', user: 'User C', reason: 'Spam', date: '2023-01-01' },
-                { id: 'action2', type: 'Warning', user: 'User D', reason: 'Hate Speech', date: '2023-01-02' },
-              ],
-            });
-          } else {
-            throw new Error('Failed to fetch analytics');
-          }
-        }, 1500);
-      });
-    },
-  },
-};
 
 interface ModerationAnalyticsData {
   totalReports: number;

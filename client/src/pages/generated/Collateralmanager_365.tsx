@@ -1,15 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button'; // Import the Button component
-import { ArrowRightIcon } from 'lucide-react'; // Example icon
+import { Button } from '@/components/ui/button';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { ArrowRightIcon } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CollateralManager
@@ -121,7 +120,7 @@ const CollateralManager: React.FC<any> = () => {
           </div>
           <div className="bg-card p-6 rounded-xl shadow-lg border border-border">
             <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Active Loans</h3>
-            <p className className="text-3xl font-bold text-accent">{collateralData.activeLoans}</p>
+            <p className="text-3xl font-bold text-accent">{collateralData.activeLoans}</p>
           </div>
           <div className="bg-card p-6 rounded-xl shadow-lg border border-border">
             <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Collateral Ratio</h3>

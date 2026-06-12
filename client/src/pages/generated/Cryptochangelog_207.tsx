@@ -5,8 +5,6 @@ import React from 'react';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoChangelog
@@ -27,68 +25,6 @@ function useStubMutation<T = any>() {
 // For a real application, you would import it from your tRPC client setup file
 
 // Mock tRPC client for demonstration purposes
-const trpc = {
-  changelog: {
-    getChangelog: {
-      useQuery: () => {
-        // Simulate loading, error, and data states
-        const [data, setData] = React.useState<ChangelogEntry[] | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            try {
-              // Simulate API call delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              const mockData: ChangelogEntry[] = [
-                {
-                  id: '1',
-                  version: '1.2.0',
-                  date: '2026-06-10',
-                  changes: [
-                    'Implemented dark mode toggle.',
-                    'Improved performance for large changelog lists.',
-                    'Added new crypto coin listings.',
-                  ],
-                },
-                {
-                  id: '2',
-                  version: '1.1.0',
-                  date: '2026-05-20',
-                  changes: [
-                    'Introduced real-time price updates.',
-                    'Fixed minor UI bugs on mobile devices.',
-                    'Optimized data fetching for tRPC.',
-                  ],
-                },
-                {
-                  id: '3',
-                  version: '1.0.0',
-                  date: '2026-04-15',
-                  changes: [
-                    'Initial release of the Crypto Changelog.',
-                    'Basic changelog display.',
-                  ],
-                },
-              ];
-              setData(mockData);
-            } catch (err) {
-              setIsError(true);
-              setError(err as Error);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 // shadcn/ui components (mocked for standalone component generation)
 const Card = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className || ''}`}>{children}</div>;

@@ -1,21 +1,21 @@
 // @ts-nocheck
 import React, { useState, useEffect, useCallback } from 'react';
-import { useForm } from '@hookform/react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+const useForm: any = (..._args: any[]) => new Proxy(() => ({}), { get: () => (() => ({ data: undefined, isLoading: false, isError: false, error: null, mutate: () => {}, mutateAsync: async () => ({}), isPending: false })) });
+import * as __ns__hookform_resolvers_zod_1 from '@hookform/resolvers/zod';
+const { zodResolver } = (__ns__hookform_resolvers_zod_1 as any);
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
-import { toast } from 'sonner'; // For error/success notifications
+import * as __ns_sonner_2 from 'sonner';
+const { toast } = (__ns_sonner_2 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SmartContractInteraction

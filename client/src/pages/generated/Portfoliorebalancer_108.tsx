@@ -5,8 +5,6 @@ import React, { useState } from 'react';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: PortfolioRebalancer
@@ -27,13 +25,6 @@ function useStubMutation<T = any>() {
 // Placeholder for tRPC client setup
 // In a real application, this would be configured to connect to your tRPC server.
 // For this example, we'll simulate data fetching.
-const trpc = {
-  portfolio: {
-    getPortfolio: {
-      useQuery: () => useQuery<PortfolioData>({ queryKey: ['portfolioData'], queryFn: fetchPortfolioData }),
-    },
-  },
-};
 
 interface Asset {
   id: string;

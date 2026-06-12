@@ -1,18 +1,17 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card
-import { Button } from '@/components/ui/button'; // shadcn/ui Button
-import { ScrollArea } from '@/components/ui/scroll-area'; // shadcn/ui ScrollArea
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // shadcn/ui Alert
-import { Skeleton } from '@/components/ui/skeleton'; // shadcn/ui Skeleton
-import { InboxIcon, Loader2 } from 'lucide-react'; // Icons
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Skeleton } from '@/components/ui/skeleton';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { InboxIcon, Loader2 } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: Web3InboxScreen
@@ -31,28 +30,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be imported.
-const trpc = {
-  web3Inbox: {
-    getMessages: {
-      useQuery: () => useQuery<Web3InboxMessage[], Error>({
-        queryKey: ['web3InboxMessages'],
-        queryFn: async () => {
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          if (Math.random() < 0.1) {
-            throw new Error('Failed to fetch inbox messages.');
-          }
-          return [
-            { id: '1', sender: '0xabc...', subject: 'Welcome to Web3!', timestamp: '2023-01-01T10:00:00Z', read: false },
-            { id: '2', sender: '0xdef...', subject: 'New NFT Drop Alert', timestamp: '2023-01-02T11:30:00Z', read: true },
-            { id: '3', sender: '0xghi...', subject: 'DAO Proposal #123', timestamp: '2023-01-03T14:00:00Z', read: false },
-            { id: '4', sender: '0xjkl...', subject: 'Your transaction confirmed', timestamp: '2023-01-04T16:45:00Z', read: true },
-          ];
-        },
-      }),
-    },
-  },
-};
 
 interface Web3InboxMessage {
   id: string;

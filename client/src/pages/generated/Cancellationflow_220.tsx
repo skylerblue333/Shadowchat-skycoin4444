@@ -8,8 +8,6 @@ import { Label } from '@/components/ui/label';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CancellationFlow
@@ -39,29 +37,6 @@ interface CancelCryptoRequest {
 }
 
 // Simulated tRPC hooks
-const trpc = {
-  crypto: {
-    getCancellationDetails: {
-      useQuery: (id: string) => useQuery<CancellationDetails, Error>({
-        queryKey: ['cancellationDetails', id],
-        queryFn: async () => {
-          await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-          if (id === 'error') throw new Error('Failed to fetch details');
-          return { id, reason: 'User requested cancellation', cancellable: true };
-        },
-      }),
-    },
-    cancelCrypto: {
-      useMutation: () => useMutation<boolean, Error, CancelCryptoRequest>({
-        mutationFn: async (data: CancelCryptoRequest) => {
-          await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
-          if (data.id === 'fail') throw new Error('Cancellation failed');
-          return true;
-        },
-      }),
-    },
-  },
-};
 
 interface CancellationFlowProps {
   cryptoId: string;

@@ -3,14 +3,13 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: BlockDetails
@@ -29,47 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for demonstration purposes
-const trpc = {
-  crypto: {
-    getBlockDetails: {
-      useQuery: (blockId: string) => {
-        const [data, setData] = React.useState<any>(null);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-              // Simulate API call delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              if (blockId === 'error-block') {
-                throw new Error('Failed to fetch block details');
-              }
-              setData({
-                id: blockId,
-                hash: '0x' + Math.random().toString(16).substring(2, 66),
-                number: Math.floor(Math.random() * 10000000),
-                timestamp: new Date().toLocaleString(),
-                transactions: Math.floor(Math.random() * 500) + 1,
-                miner: '0x' + Math.random().toString(16).substring(2, 42),
-                difficulty: (Math.random() * 10000000000000).toFixed(0),
-              });
-            } catch (e) {
-              setIsError(true);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, [blockId]);
-
-        return { data, isLoading, isError };
-      },
-    },
-  },
-};
 
 interface BlockDetailsProps {
   blockId: string;

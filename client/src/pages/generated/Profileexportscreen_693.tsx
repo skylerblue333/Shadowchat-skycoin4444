@@ -1,14 +1,13 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui button
-import { toast } from 'sonner'; // Assuming shadcn/ui toast for notifications
+import { Button } from '@/components/ui/button';
+import * as __ns_sonner_1 from 'sonner';
+const { toast } = (__ns_sonner_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ProfileExportScreen
@@ -31,20 +30,6 @@ interface ProfileExportScreenProps {
 }
 
 // Simulate tRPC client for export functionality
-const trpc = {
-  profile: {
-    exportData: (userId: string, format: 'json' | 'csv' | 'pdf') =>
-      new Promise<string>((resolve, reject) => {
-        setTimeout(() => {
-          if (Math.random() > 0.1) { // Simulate success 90% of the time
-            resolve(`Export successful for user ${userId} in ${format} format.`);
-          } else {
-            reject(new Error('Failed to export profile data.'));
-          }
-        }, 1500);
-      }),
-  },
-};
 
 export const ProfileExportScreen: React.FC<any> = ({ userId }) => {
   const [exportFormat, setExportFormat] = useState<'json' | 'csv' | 'pdf'>('json');

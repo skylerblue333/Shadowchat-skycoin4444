@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui card component
-import { Skeleton } from '@/components/ui/skeleton'; // Assuming shadcn/ui skeleton component
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'; // Assuming shadcn/ui alert component
+import * as __ns_recharts_1 from 'recharts';
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = (__ns_recharts_1 as any);
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoPriceCharts
@@ -29,21 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for fetching data
-const trpc = {
-  crypto: {
-    getPriceChart: (currency: string) => useQuery<any[], Error>({ queryKey: ['priceChart', currency], queryFn: async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      if (Math.random() < 0.1) {
-        throw new Error('Failed to fetch price data');
-      }
-      return Array.from({ length: 30 }, (_, i) => ({
-        date: `Day ${i + 1}`,
-        price: Math.random() * 1000 + 500,
-      }));
-    }})
-  }
-};
 
 interface CryptoPriceChartsProps {
   currency: string;

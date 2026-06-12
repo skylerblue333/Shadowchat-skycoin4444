@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: NotificationsBatching
@@ -26,32 +24,6 @@ function useStubMutation<T = any>() {
 
 
 // Dummy tRPC context and hooks for demonstration
-const trpc = {
-  notification: {
-    getNotifications: {
-      useQuery: () => {
-        const [isLoading, setIsLoading] = useState(true);
-        const [error, setError] = useState<Error | null>(null);
-        const [data, setData] = useState<string[] | null>(null);
-
-        React.useEffect(() => {
-          const timer = setTimeout(() => {
-            if (Math.random() > 0.8) {
-              setError(new Error("Failed to fetch notifications."));
-              setIsLoading(false);
-            } else {
-              setData(["Notification 1", "Notification 2", "Notification 3"]);
-              setIsLoading(false);
-            }
-          }, 1500);
-          return () => clearTimeout(timer);
-        }, []);
-
-        return { isLoading, error, data };
-      },
-    },
-  },
-};
 
 const NotificationsBatching: React.FC = () => {
   const { theme, setTheme } = useTheme();

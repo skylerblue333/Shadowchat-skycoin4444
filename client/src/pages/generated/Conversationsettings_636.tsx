@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming shadcn/ui path
-import { Switch } from '@/components/ui/switch'; // Assuming shadcn/ui path
-import { Label } from '@/components/ui/label'; // Assuming shadcn/ui path
-import { Button } from '@/components/ui/button'; // Assuming shadcn/ui path
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ConversationSettings
@@ -30,12 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Placeholder for tRPC hooks - in a real app, these would be generated
-const trpc = {
-  settings: {
-    get: () => ({ data: { enableAI: true, responseLength: 'medium' }, isLoading: false, error: null }),
-    update: (data: any) => new Promise(resolve => setTimeout(() => resolve({ success: true }), 500)),
-  },
-};
 
 interface ConversationSettingsProps {
   // Define any props if needed

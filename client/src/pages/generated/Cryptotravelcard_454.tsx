@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui card component
-import { Button } from '@/components/ui/button'; // shadcn/ui button component
-import { Switch } from '@/components/ui/switch'; // shadcn/ui switch component for dark mode
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { DollarSign, CreditCard, Loader2, WifiOff } from 'lucide-react'; // Icons for UI
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { DollarSign, CreditCard, Loader2, WifiOff } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoTravelCard
@@ -31,25 +30,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be generated.
-const trpc = {
-  travelCard: {
-    getCardDetails: (cardId: string) => ({ queryKey: ['cardDetails', cardId], queryFn: async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      if (Math.random() < 0.1) throw new Error('Failed to fetch card details');
-      return {
-        id: cardId,
-        balance: Math.floor(Math.random() * 10000) / 100,
-        currency: 'USD',
-        status: 'active',
-        lastTransactions: [
-          { id: 't1', description: 'Coffee Shop', amount: -4.50, date: '2023-01-10' },
-          { id: 't2', description: 'Online Store', amount: -75.00, date: '2023-01-09' },
-        ],
-      };
-    }}),
-  },
-};
 
 interface Transaction {
   id: string;

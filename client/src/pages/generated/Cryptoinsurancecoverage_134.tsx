@@ -3,16 +3,16 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react'; // For loading states
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Loader2 } = (__ns_lucide_react_1 as any);
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_2 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_2 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoInsuranceCoverage
@@ -42,28 +42,6 @@ interface InsuranceCoverageData {
 }
 
 // Placeholder for tRPC client/hooks - replace with actual tRPC setup
-const trpc = {
-  insurance: {
-    getCoverage: (id: string) => useQuery<InsuranceCoverageData>({ 
-      queryKey: ['insuranceCoverage', id], 
-      queryFn: async () => ({
-        id: '1',
-        policyName: 'Basic Crypto Policy',
-        coverageAmount: 10000,
-        isActive: true,
-        policyId: 'CRYPTO-INS-2023-001',
-        effectiveDate: '2023-01-01',
-        nextPremiumDate: '2024-01-01',
-        benefits: [
-          'Theft Protection',
-          'Smart Contract Vulnerability',
-          'Exchange Insolvency',
-        ],
-      }),
-    }),
-    updateCoverage: () => useMutation<InsuranceCoverageData, Error, { id: string; isActive: boolean }>({ mutationFn: async (data) => data as InsuranceCoverageData }),
-  },
-};
 
 const CryptoInsuranceCoverage: React.FC = () => {
   const { data, isLoading, isError, error } = trpc.insurance.getCoverage('1');

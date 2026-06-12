@@ -1,17 +1,16 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // shadcn/ui Card
-import { Switch } from '@/components/ui/switch'; // shadcn/ui Switch for dark mode
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react'; // Example icon
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoAmlScreening
@@ -30,21 +29,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC hook for demonstration
-const trpc = {
-  crypto: {
-    amlScreening: {
-      useQuery: (params: { id: string }) => {
-        const { data, isLoading, error } = useQuery<any, Error>({ queryKey: ['amlScreening', params.id], queryFn: async () => {
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          if (params.id === 'error-test') throw new Error('Failed to fetch AML data');
-          return { id: params.id, status: 'Cleared', riskScore: 10, lastUpdated: new Date().toLocaleString() };
-        } });
-        return { data, isLoading, error };
-      },
-    },
-  },
-};
 
 interface CryptoAmlScreeningProps {
   cryptoId: string;

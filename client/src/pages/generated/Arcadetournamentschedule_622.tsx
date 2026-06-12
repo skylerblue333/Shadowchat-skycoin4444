@@ -1,16 +1,14 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Placeholder for shadcn/ui Card
-import { Button } from "@/components/ui/button"; // Placeholder for shadcn/ui Button
-import { Switch } from "@/components/ui/switch"; // Placeholder for shadcn/ui Switch
-import { Label } from "@/components/ui/label"; // Placeholder for shadcn/ui Label
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ArcadeTournamentSchedule
@@ -38,19 +36,6 @@ interface Tournament {
 }
 
 // Placeholder for tRPC client
-const trpc = {
-  tournament: {
-    list: () => ({ queryKey: ['tournaments'], queryFn: async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return [
-        { id: '1', name: 'Summer Showdown', date: '2026-07-15', time: '18:00', game: 'Fighting Game X', status: 'upcoming' },
-        { id: '2', name: 'Winter Cup', date: '2026-12-01', time: '20:00', game: 'Racing Game Y', status: 'live' },
-        { id: '3', name: 'Spring Open', date: '2026-03-20', time: '16:00', game: 'Puzzle Game Z', status: 'completed' },
-      ];
-    } })
-  }
-};
 
 const ArcadeTournamentSchedule: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);

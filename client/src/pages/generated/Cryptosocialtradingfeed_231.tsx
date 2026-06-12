@@ -6,14 +6,13 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { Terminal } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoSocialTradingFeed
@@ -33,48 +32,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client for demonstration. In a real app, this would be imported.
-const trpc = {
-  socialTrading: {
-    getFeed: {
-      useQuery: () => {
-        // Simulate loading, error, and success states
-        const [data, setData] = React.useState<FeedItem[] | undefined>(undefined);
-        const [isLoading, setIsLoading] = React.useState(true);
-        const [isError, setIsError] = React.useState(false);
-        const [error, setError] = React.useState<Error | null>(null);
-
-        React.useEffect(() => {
-          const fetchData = async () => {
-            try {
-              setIsLoading(true);
-              setIsError(false);
-              setError(null);
-              // Simulate API call delay
-              await new Promise(resolve => setTimeout(resolve, 1500));
-              if (Math.random() < 0.1) { // 10% chance of error
-                throw new Error('Failed to fetch social trading feed.');
-              }
-              setData([
-                { id: '1', user: 'Alice', avatar: 'https://github.com/shadcn.png', content: 'Just bought more BTC! To the moon! #crypto', timestamp: new Date(), likes: 120, comments: 15 },
-                { id: '2', user: 'Bob', avatar: 'https://github.com/shadcn.png', content: 'Thinking about diversifying into altcoins. Any suggestions?', timestamp: new Date(Date.now() - 3600000), likes: 80, comments: 10 },
-                { id: '3', user: 'Charlie', avatar: 'https://github.com/shadcn.png', content: 'Market analysis: ETH looks strong for Q3. DYOR.', timestamp: new Date(Date.now() - 7200000), likes: 200, comments: 30 },
-                { id: '4', user: 'David', avatar: 'https://github.com/shadcn.png', content: 'New NFT project launching soon. Keep an eye out!', timestamp: new Date(Date.now() - 10800000), likes: 50, comments: 5 },
-              ]);
-            } catch (err) {
-              setIsError(true);
-              setError(err as Error);
-            } finally {
-              setIsLoading(false);
-            }
-          };
-          fetchData();
-        }, []);
-
-        return { data, isLoading, isError, error };
-      },
-    },
-  },
-};
 
 interface FeedItem {
   id: string;

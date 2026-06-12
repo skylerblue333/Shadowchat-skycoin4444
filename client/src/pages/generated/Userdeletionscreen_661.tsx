@@ -10,8 +10,6 @@ import { Switch } from '@/components/ui/switch';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: UserDeletionScreen
@@ -41,21 +39,6 @@ interface DeleteUserResponse {
 }
 
 // Placeholder for tRPC client and hooks
-const trpc = {
-  user: {
-    delete: (userId: string): Promise<DeleteUserResponse> => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          if (userId === 'user-123') {
-            resolve({ success: true, message: `User ${userId} deleted successfully.` });
-          } else {
-            resolve({ success: false, message: `User ${userId} not found.` });
-          }
-        }, 1500);
-      });
-    },
-  },
-};
 
 const UserDeletionScreen: React.FC = () => {
   const [userIdToDelete, setUserIdToDelete] = useState<string>('');

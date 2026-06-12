@@ -1,17 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SecuritiesLendingScreen
@@ -30,26 +28,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC client and hooks for demonstration
-const trpc = {
-  useQuery: (key: string) => {
-    if (key === 'securitiesData') {
-      return {
-        data: {
-          totalAssets: 1234567.89,
-          availableForLending: 500000.00,
-          lentOut: 734567.89,
-          recentTransactions: [
-            { id: '1', asset: 'BTC', amount: 10, type: 'Lend', status: 'Completed' },
-            { id: '2', asset: 'ETH', amount: 50, type: 'Borrow', status: 'Pending' },
-          ],
-        },
-        isLoading: false,
-        isError: false,
-      };
-    }
-    return { data: null, isLoading: false, isError: false };
-  },
-};
 
 const SecuritiesLendingScreen: React.FC = () => {
   const { data, isLoading, isError } = trpc.useStubQuery('securitiesData');

@@ -5,8 +5,6 @@ import React from 'react';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: CryptoInflationRate
@@ -92,34 +90,6 @@ const Terminal: React.FC<any> = (props) => (
 
 // Mock tRPC client and API types
 // In a real application, these would be generated from your tRPC setup
-const trpc = {
-  crypto: {
-    getInflationRate: {
-      useQuery: (params: { currency: string }) => useQuery<number, Error>({
-        queryKey: ['inflationRate', params.currency],
-        queryFn: async () => {
-          // Simulate API call
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          if (params.currency === 'SKYCOIN4444') {
-            // Simulate a successful response with a random inflation rate
-            const inflationRate = parseFloat((Math.random() * 10).toFixed(2));
-            if (inflationRate > 7) {
-              throw new Error('High inflation detected!'); // Simulate an error for high inflation
-            }
-            return inflationRate;
-          } else if (params.currency === 'ERROR_TEST') {
-            throw new Error('Failed to fetch data for ERROR_TEST.');
-          } else {
-            throw new Error('Currency not supported.');
-          }
-        },
-        // Add retry logic for production-grade error handling
-        retry: 3,
-        retryDelay: 1000,
-      }),
-    },
-  },
-};
 
 interface CryptoInflationRateProps {
   currency: string;

@@ -7,14 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { SunIcon, MoonIcon, RefreshCcw } from 'lucide-react';
+import * as __ns_lucide_react_1 from 'lucide-react';
+const { SunIcon, MoonIcon, RefreshCcw } = (__ns_lucide_react_1 as any);
 
 /* injected loose stubs so generated UI renders without a real backend */
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ConversationRecommendations
@@ -33,33 +32,6 @@ function useStubMutation<T = any>() {
 
 
 // Mock tRPC-like hooks for demonstration
-const trpc = {
-  conversation: {
-    getRecommendations: (params: { userId: string; count: number; category?: string }) =>
-      new Promise<string[]>((resolve) => {
-        setTimeout(() => {
-          const mockRecommendations = [
-            `Discuss ${params.category || 'general'} AI ethics in healthcare.`,
-            `Explore new applications of large language models.`,
-            `Debate the future of AI in creative industries.`,
-            `Analyze the impact of AI on job markets.`,
-            `Review recent advancements in AI safety.`,
-            `Consider the role of AI in personalized education.`,
-            `Examine AI's influence on data privacy.`,
-            `Discuss the challenges of AI deployment in enterprise.`,
-            `Brainstorm AI solutions for climate change.`,
-            `Evaluate the effectiveness of current AI regulations.`,
-          ];
-          const filtered = params.category
-            ? mockRecommendations.filter((rec) =>
-                rec.toLowerCase().includes(params.category!.toLowerCase())
-              )
-            : mockRecommendations;
-          resolve(filtered.slice(0, params.count));
-        }, 1000);
-      }),
-  },
-};
 
 interface ConversationRecommendationsProps {
   userId: string;

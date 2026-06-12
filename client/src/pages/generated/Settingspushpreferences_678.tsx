@@ -9,8 +9,6 @@ import { z } from 'zod';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: SettingsPushPreferences
@@ -60,13 +58,6 @@ const appRouter = {
   },
 };
 
-const trpc = createTRPCProxyClient<typeof appRouter>({
-  links: [
-    httpBatchLink({
-      url: '/api/trpc', // This would be your actual tRPC API endpoint
-    }),
-  ],
-});
 
 const queryClient = new QueryClient();
 

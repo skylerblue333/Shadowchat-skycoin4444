@@ -8,8 +8,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: ProposalAmendments
@@ -54,23 +52,6 @@ const mockProposals: Proposal[] = [
   },
 ];
 
-const trpc = {
-  proposal: {
-    list: {
-      useQuery: () => useQuery<Proposal[], Error>({
-        queryKey: ['proposals'],
-        queryFn: async () => {
-          // Simulate API call delay
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          if (Math.random() < 0.1) {
-            throw new Error('Failed to fetch proposals');
-          }
-          return mockProposals;
-        },
-      }),
-    },
-  },
-};
 
 export const ProposalAmendments: React.FC = () => {
   const { data: proposals, isLoading, isError, error } = useStubQuery();

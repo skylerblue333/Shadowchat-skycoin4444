@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button';
 const trpc: any = new Proxy({}, { get: () => new Proxy({}, { get: () => () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {}, mutate: () => {}, mutateAsync: async () => ({}) }) }) });
 const useQuery: any = () => ({ data: undefined, isLoading: false, isPending: false, isError: false, error: null, refetch: () => {} });
 const useMutation: any = () => ({ mutate: () => {}, mutateAsync: async () => ({}), isLoading: false, isPending: false, isError: false, isSuccess: false, error: null, data: undefined, reset: () => {} });
-const useStubQuery: any = useQuery;
-const useStubMutation: any = useMutation;
 const useQueryClient: any = () => ({ invalidateQueries: () => {}, setQueryData: () => {} });
 
 // AUTO-GENERATED DRAFT SCREEN: Calculator
@@ -67,11 +65,6 @@ const mockTrpcClient = {
 };
 
 // Mock trpc object for client-side usage
-const trpc = {
-  createClient: (config: any) => mockTrpcClient,
-  Provider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
-  calculate: mockTrpcClient.calculate,
-};
 
 const Calculator: React.FC = () => {
   const [input, setInput] = useState<string>('');
