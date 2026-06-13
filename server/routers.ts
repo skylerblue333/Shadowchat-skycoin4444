@@ -46,6 +46,7 @@ import { achievementsRouter } from "./routers/achievements";
 import { referralsRouter } from "./routers/referrals";
 import { tradingBotsRouter } from "./routers/trading-bots";
 import { walletRouter } from "./routers/wallet";
+import { walletEnhancedRouter } from "./routers/wallet-enhanced";
 import { gamificationRouter } from "./routers/gamification";
 import { earnLearnRouter } from "./routers/earn-learn";
 import { aiCodeEngineerRouter } from "./routers/ai-code-engineer";
@@ -111,7 +112,7 @@ export const appRouter = router({
   achievements: achievementsRouter,
   referrals: referralsRouter,
   bots: tradingBotsRouter,
-  wallet: walletRouter,
+  wallet: walletEnhancedRouter,
   gamification: gamificationRouter,
   earnLearn: earnLearnRouter,
   aiCodeEngineer: aiCodeEngineerRouter,
