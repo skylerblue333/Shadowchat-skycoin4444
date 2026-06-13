@@ -58,6 +58,7 @@ import { curveFinanceRouter } from "./routers/curve-finance";
 import { deliveryRouter } from "./routers/delivery";
 import { miningRouter } from "./routers/mining";
 import { rwaRouter } from "./routers/rwa";
+import { stripeRouter } from "./routers/stripe";
 
 export const appRouter = router({
   system: systemRouter,
@@ -136,6 +137,7 @@ export const appRouter = router({
   delivery: deliveryRouter,
   mining: miningRouter,
   rwa: rwaRouter,
+  stripe: stripeRouter,
   // Global procedures
   getNetworks: publicProcedure.query(async () => []),
   getWidgets: publicProcedure.query(async () => []),
