@@ -49,6 +49,14 @@ import { walletRouter } from "./routers/wallet";
 import { gamificationRouter } from "./routers/gamification";
 import { earnLearnRouter } from "./routers/earn-learn";
 import { aiCodeEngineerRouter } from "./routers/ai-code-engineer";
+import { aiRouter } from "./routers/ai";
+import { autocallRouter } from "./routers/autocall";
+import { carbonCreditRouter } from "./routers/carbon-credit";
+import { compoundRouter } from "./routers/compound";
+import { curveFinanceRouter } from "./routers/curve-finance";
+import { deliveryRouter } from "./routers/delivery";
+import { miningRouter } from "./routers/mining";
+import { rwaRouter } from "./routers/rwa";
 
 export const appRouter = router({
   system: systemRouter,
@@ -119,6 +127,19 @@ export const appRouter = router({
   phase29: phase29UiRouter,
   phase30: phase30GatewayRouter,
   phase32: phase32Router,
+  ai: aiRouter,
+  autocall: autocallRouter,
+  carbonCredit: carbonCreditRouter,
+  compound: compoundRouter,
+  curveFinance: curveFinanceRouter,
+  delivery: deliveryRouter,
+  mining: miningRouter,
+  rwa: rwaRouter,
+  // Global procedures
+  getNetworks: publicProcedure.query(async () => []),
+  getWidgets: publicProcedure.query(async () => []),
+  hashrate: publicProcedure.query(async () => ({ hashrate: 0 })),
+  stakingData: publicProcedure.query(async () => ({ staking: [] })),
 });
 
 export type AppRouter = typeof appRouter;
